@@ -40,7 +40,7 @@
   --bs-gray-800: #343a40;
   --bs-gray-900: #212529;
   --bs-primary: #78aa8c;
-  --bs-secondary: #5f6767;
+  --bs-secondary: #3c4646;
   --bs-success: #5f6767;
   --bs-info: #6cc3d5;
   --bs-warning: #ffce67;
@@ -48,7 +48,7 @@
   --bs-light: #f8f9fa;
   --bs-dark: #343a40;
   --bs-primary-rgb: 120, 170, 140;
-  --bs-secondary-rgb: 95, 103, 103;
+  --bs-secondary-rgb: 60, 70, 70;
   --bs-success-rgb: 86, 204, 157;
   --bs-info-rgb: 108, 195, 213;
   --bs-warning-rgb: 255, 206, 103;
@@ -13690,6 +13690,63 @@ section.resume-section .resume-section-content {
 }
 
 .special-hover:hover {
-    box-shadow: 0 0 10px 6px #eed4de;
-    
+    box-shadow: 0 0 10px 6px #eed4de;    
+}
+
+.resume .resume-title {
+  font-size: 26px;
+  font-family: "Patrick Hand";
+  font-weight: 200;
+  margin-top: 24px;
+  margin-bottom: 20px;
+
+}
+
+.resume .resume-item {
+  padding: 0 0 20px 20px;
+  margin-top: -2px;
+  border-left: 2px solid #78aa8c;
+  position: relative;
+}
+
+.resume .resume-item h4 {
+  line-height: 18px;
+  font-size: 18px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #444444;
+  margin-bottom: 10px;
+}
+
+.resume .resume-item h5 {
+  font-size: 16px;
+  background: #e2f3eb;
+  padding: 3px 15px;
+  display: inline-block;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.resume .resume-item ul {
+  padding-left: 20px;
+}
+
+.resume .resume-item ul li {
+  padding-bottom: 10px;
+}
+
+.resume .resume-item:last-child {
+  padding-bottom: 0;
+}
+
+.resume .resume-item::before {
+  content: "";
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border-radius: 50px;
+  left: -9px;
+  top: 0;
+  background: #fff;
+  border: 2px solid #78aa8c;
 }
