@@ -12,8 +12,12 @@
   border: 1px solid rgba(30, 143, 255, 0.5);
   border-radius: 5px;
   padding: 4px;
-  background: rgba(255,255,255,0.8);
+  background-color: rgb(255, 255, 255, 0.8);
   box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+
+.sequence-control-container-day {
+  width:350px;
 }
 
 .leaflet-control-zoom {
@@ -35,21 +39,29 @@
   margin-left:0.5rem;
   margin-right:0.5rem;
   order: 2;
-}  
+  cursor: pointer;
+}
+
+.range-slider-day {
+  width:280px;
+}
 
 .step-day, .step-mon, .step-ann, .step {  
   width: 2.0rem;
-  border: 0px solid grey;
+  border: 0px solid #eee;
   border-radius: 3px;
+  background: #e0e3e6;
   padding:1px;
 }
 
 .step-day:hover, .step-mon:hover, .step-ann:hover {
-  background-color: lightgrey;
+  background-color: rgb(215, 233, 239);
+  cursor: pointer;
 }
 
 .step-day:active, .step-mon:active, .step-ann:active {
   background-color: rgb(173, 216, 230);
+  cursor: pointer;
 }
 
 .step-day img, .step-mon img, .step-ann img, .step img {  
@@ -64,6 +76,21 @@
 
 #reverse {  
   order: 1;
+}
+
+.legend-control-container-day, .legend-control-container-mon, .legend-control-container-ann, .legend-control-container {
+  display:block;
+  border: 1px solid rgba(30, 143, 255, 0.2);
+  border-radius: 5px;
+  padding: 4px;
+  box-shadow: 0 0 2px rgba(0,0,0,0.2);
+  background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.5),rgba(255, 255, 255, 1));
+  width:fit-content;
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.temporalLegend-day, .temporalLegend-mon, .temporalLegend-ann, .temporalLegend {
+  text-align: center;
 }
 
 /*Other website styling*/
@@ -227,6 +254,10 @@ body {
   .header h1{
     font-size: 35px;
   }
+
+  .footer {
+    font-size: small;
+  }
 }
 
 /* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other */
@@ -234,10 +265,6 @@ body {
   .leftcolumn, .rightcolumn {   
     width: 100%;
     padding: 0;
-  }
-
-  .footer {
-    font-size: small;
   }
 
   .box {
@@ -255,6 +282,27 @@ body {
   .header h1{
     font-size: 35px;
   }
+
+  /*When the screen is less than 800px wide, remove basemap attribution in leaflet map, show attrbution in footer*/
+  .leaflet-control-attribution {
+    display:none;
+  }
+
+  .moved-attribution {
+    display:block;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .legend-control-container-day {
+    transform: translateY(-45px);
+  }
+}
+
+@media screen and (max-width: 520px) {
+  .legend-control-container-mon, .legend-control-container-ann, .legend-control-container {
+    transform: translateY(-45px);
+  }
 }
 
 /* Responsive layout - when the screen is less than 400px wide, make the navigation links stack on top of each other instead of next to each other */
@@ -262,15 +310,6 @@ body {
   .topnav a {
     float: none;
     width: 100%;
-  }
-
-  /*When the screen is less than 400px wide, remove basemap attribution in leaflet map, show attrbution in footer*/
-  .leaflet-control-attribution {
-    display:none;
-  }
-
-  .moved-attribution {
-    display:block;
   }
 }
 
