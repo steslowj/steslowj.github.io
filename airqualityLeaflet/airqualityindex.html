@@ -41,49 +41,53 @@
             <div class="leftcolumn">
             <div class="card">
                 <h2>Project Summary</h2>
-                <p>My project is to evaluate geographical phenomena with at least 7 timestamps, and show the data on a web map.
+                <p>My project is to evaluate geographical phenomena that changes over time by creating an interactive map.
                      I chose to evaluate air quality in the United States. The EPA provides data on air quality using a term called AQI, 
                     and publishes data by metro area and for a variety of time periods.
                 </p>
-                <p>I evaluated air quality in the United States in two ways: Median AQI <b>annually</b> and <b>monthly</b>.</p>
+                <p>I evaluated air quality in the United States in three ways: Median AQI calculated <b>annually</b>, <b>monthly</b>, and <b>daily</b>.</p>
                 <p><br>Important terms:</p>
                 <dl>
                     <dt><b>AQI</b></dt>
                     <dd>The Air Quality Index (AQI) is an aggregated term to evaluate air quality from multiple air pollutants.
                         The EPA AQI is grouped into one of six categories based on its value and associated health risks. A lower AQI corresponds to cleaner air, 
                         with little pollution, and a higher AQI corresponds to unhealthy air. For each pollutant, a value of 100 generally corresponds to the 
-                        national air quality standard for public health. Each category is associated with a color, shown on the "AQI Rating" panel.</dd>
+                        national air quality standard for public health. The AQI categories are color-coded: green is good, red is bad, maroon is hazardous.</dd>
                     <dd><br></dd>
                     <dt><b>CBSA</b></dt>
                     <dd>U.S. EPA Core Based Statistical Area (CBSA) is a term used for metro areas. I narrowed my analysis to the top 40 most populated metro areas.</dd>
                 </dl>
             </div>
             <div class="card">
-                <h2>MegaCities Example</h2>
-                <div class="mapcard" id="mapcard-megacities"></div>
-            </div>
-            <div class="card">
-                <h2>Median Annual AQI in USA Metro Areas 2016-2022</h2>
+                <h2>Median Annual AQI in USA Metro Areas 2000-2022</h2>
                 <div class="mapcard"  id="mapcard-annual"></div>
-                <p>This map looks at trends in the median AQI value over the whole year, for the years 2016-2022.</p>
+                <p>This map looks at trends in the median AQI value over the whole year, for the years 2000-2022.</p>
                 <p>AQI is known to vary quite drastically daily, monthly, seasonally, and in response to accute events (wildfires, for example), and thus AQI is typically 
-                    evaluated with more granualar time data. But I was interested in exploring possible trends with course time data, in this case, the median value for AQI
-                    over the year. This analysis shows the yearly median AQI has a geographic pattern and is relatively consistent in metro areas between years.
+                    evaluated with more granualar time data. This map explores AQI with "course" time data, looking at the median value over a full year.
+                </p>
+                <p>This analysis shows the yearly median AQI is relatively consistent in metro areas between years. We also see AQI values generally decrease across all metro areas.
                 </p>
             </div>
             <div class="card">
                 <h2>Median Monthly AQI in USA Metro Areas 2021</h2>
                 <div class="mapcard"  id="mapcard-monthly"></div>
-                <p>This map evaluates AQI trends in the same metro areas as the first map, but with median AQI per per month in 2021.</p>
+                <p>This map evaluates AQI trends in the same metro areas as the first map, but with median AQI calculated per month in 2021.</p>
                 <p>The year 2021 was chosen because it is the most recent full year of data published, using daily AQI data that I consolidated into months. 
                     The monthly AQI data is more varied than yearly data. The strongest geographic pattern seems to be AQI is higher in the southwest. 
-                    This data also shows significantly higher AQI in the summer season.
+                    This data also shows higher AQI in the summer season, which is a known pattern with air quality: AQI is usually worse with high heat.
                 </p>
             </div>
             <div class="card">
                 <h2>Median Daily AQI in USA Metro Areas 2021</h2>
                 <div class="mapcard"  id="mapcard-daily"></div>
-                <p>This map evaluates AQI trends in the same metro areas as the first two maps, but with median AQI per per day in 2021.</p>
+                <p>This map evaluates AQI trends in the same metro areas as the first two maps, but with median AQI calculated per day in 2021.</p>
+                <p>The time data for this map is much "finer" than the previous two. I wanted to see if I could capture the day to day variations in AQI in comparison
+                    to the more consistent monthly and annual data. The result is a little visually overwhelming, but we do see that AQI can vary drastically in any 
+                    metro area. We also see more frequent spots of high AQI in the summer months across many metros.
+                </p>
+                <p> This data shows Arizona and California have consistently high AQI values. Metros in these states tend to be highly populated with warm and dry climates. 
+                    They are particularly susceptible to effects from high heat, urban emissions, and wildfires.
+                </p>
             </div>
             </div>
             <div class="rightcolumn">
@@ -151,10 +155,9 @@
         <!--put your external script links here-->
         <script type="text/javascript" src="lib/leaflet/leaflet-src.js"></script>
         <script type="text/javascript" src="lib/leaflet/leaflet-providers.js"></script>
-        <script type="text/javascript" src="js/ch6_example3.7.js"></script>
-        <script type="text/javascript" src="js/lab1mod3_annual.js"></script>
-        <script type="text/javascript" src="js/lab1mod3_monthly.js"></script>
-        <script type="text/javascript" src="js/lab1mod3_daily.js"></script>
+        <script type="text/javascript" src="js/main_annual_lab1final.js"></script>
+        <script type="text/javascript" src="js/main_monthly_lab1final.js"></script>
+        <script type="text/javascript" src="js/main_daily_lab1final.js"></script>
 
     </body>
 </html>

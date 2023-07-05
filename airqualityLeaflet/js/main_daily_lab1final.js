@@ -1,14 +1,14 @@
 /*Author: Jessica Steslow, 6-28-2023*/
 
 //declare map variable globally so all functions have access
-var map_ann;
-var annDataStats = {};
+var map_day;
+var dayDataStats = {};
 
 //function to instantiate the Leaflet map
-function createMapAnn(){
+function createMapDay(){
     
     //create the map, centered apprx. on the center of my US city data
-    map_ann = L.map('mapcard-annual', {
+    map_day = L.map('mapcard-daily', {
         center: [38, -97],
         zoom: 4
     });
@@ -17,44 +17,47 @@ function createMapAnn(){
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
         subdomains: 'abcd',
         maxZoom: 20
-    }).addTo(map_ann);
+    }).addTo(map_day);
     
     //call getData function
-    getDataAnn(map_ann);
+    getDataDay(map_day);
 }
 
-function calcStatsAnn(data){
+function calcStatsDay(data, attributes){
     //create empty array to store all data values
     var allValues = [];
     //loop through each city
-    for(var city of data.features){
-        //loop through each year
-        for(var year = 2016; year <= 2022; year+=1){
-            //get air quality for current year
-            var value = city.properties["medAQI-"+ String(year)];
+    //console.log(data); returns Object {type: "FeatureCollection", features: (40) [...]}
+    //console.log(data.features); returns Array (40) [ {0: Object {type: "Feature", properties: {...}, geometry: {...} }}...]
+    for(var city of data.features){  //city as a placeholder value iterating over the items in the feature array
+        //Iterate through attributes array, already specific to data we want to map
+        for(var column of attributes){
+            //get air quality for current day
+            var value = city.properties[column];
             //add value to array
             allValues.push(value);
         }
     }
-    annDataStats.minAnn = Math.min(...allValues);  //get min, max, mean stats for our array
-    annDataStats.maxAnn = Math.max(...allValues);
+
+    dayDataStats.minDay = Math.min(...allValues);  //get min, max, mean stats for our array
+    dayDataStats.maxDay = Math.max(...allValues);
     var sum = allValues.reduce(function(a, b){return a+b;});    //calculate meanValue
-    annDataStats.meanAnn = sum/allValues.length;
-    console.log("Ann stats: ",annDataStats);
+    dayDataStats.meanDay = sum/allValues.length;
+    console.log("Day stats: ",dayDataStats);
 }
 
 //calculate the radius of each proportional symbol
-function calcPropRadiusAnn(attValue) {
+function calcPropRadiusDay(attValue) {
     //constant factor adjusts symbol sizes evenly
-    var minRadius = 8;
+    var minRadius = 4;
     //Flannery Apperance Compensation formula
-    var radius = 1.0083 * Math.pow(attValue / annDataStats.minAnn,0.5715) * minRadius
-    //var radius = 1.0083 * Math.pow(attValue / 28,0.5715) * minRadius  //Using min from Monthly data for same scale
+    var radius = 1.0083 * Math.pow(attValue / dayDataStats.minDay,0.5715) * minRadius
+    //var radius = 1.0083 * Math.pow(attValue / 28,0.5715) * minRadius  //Using 28 as rounded min, same scale as Annual data
     return radius;
 }
 
 //function to categorize proportional symbol color by AQI value
-function groupPropColorAnn(attValue) {
+function groupPropColorDay(attValue) {
     var aqiColor = "#add836";         //Setting default color (light blue)
     if ( attValue <= 50) {            //Green, Good
         aqiColor = "#00e400";
@@ -73,7 +76,7 @@ function groupPropColorAnn(attValue) {
 }
 
 //function to convert markers to circle markers and add popups
-function pointToLayerAnn(feature, latlng, attributes){
+function pointToLayerDay(feature, latlng, attributes){
     //Determine which attribute to visualize with proportional symbols
     var attribute = attributes[0];
 
@@ -90,20 +93,20 @@ function pointToLayerAnn(feature, latlng, attributes){
     var attValue = Number(feature.properties[attribute]);
 
     //Give each feature's circle marker a radius based on its attribute value
-    options.radius = calcPropRadiusAnn(attValue);
+    options.radius = calcPropRadiusDay(attValue);
 
     //Give each featur's circle marker a color based on its attribute value
-    options.fillColor = groupPropColorAnn(attValue);
+    options.fillColor = groupPropColorDay(attValue);
 
     //create circle marker layer
     var layer = L.circleMarker(latlng, options);
 
     //build popup content string starting with city...Example 2.1 line 24
-    var popupContent = "<p><b>Metro:</b> " + feature.properties.CBSA + "</p>";
+    var popupContent = "<p><b>CBSA:</b> " + feature.properties.CBSA + "</p>";
 
     //add formatted attribute to popup content string
-    var year = attribute.split("-")[1];
-    popupContent += "<p><b>Median AQI in " + year + ":</b> " + feature.properties[attribute] + "</p>";
+    var calDay = attribute.slice(0,-4)+'21';
+    popupContent += "<p><b>Median AQI on " + calDay + ":</b> " + feature.properties[attribute] + "</p>";
 
     //bind the popup to the circle marker
     layer.bindPopup(popupContent, {
@@ -114,20 +117,20 @@ function pointToLayerAnn(feature, latlng, attributes){
     return layer;
 }
 
-function createPropSymbolsAnn(data, attributes){
+function createPropSymbolsDay(data, attributes){
     //create a Leaflet GeoJSON layer and add it to the map
     L.geoJson(data, {
         pointToLayer: function(feature, latlng){
-            return pointToLayerAnn(feature, latlng, attributes);
+            return pointToLayerDay(feature, latlng, attributes);
         }
-    }).addTo(map_ann);
+    }).addTo(map_day);
 }
 
-function getCircleValuesAnn(attribute) {
+function getCircleValuesDay(attribute) {
     //start with min at highest possible and max at lowest possible
     var min = Infinity, max = -Infinity;
 
-    map_ann.eachLayer(function (layer) {
+    map_day.eachLayer(function (layer) {
         //get the attribute value
         if (layer.feature) {
             var attributeValue = Number(layer.feature.properties[attribute]);
@@ -139,102 +142,103 @@ function getCircleValuesAnn(attribute) {
 
     var mean = (max + min) / 2;  //set mean
 
-    return {          //return as an object Ann specific
-        maxAnn: max,
-        meanAnn: mean,
-        minAnn: min,
+    return {          //return as an object Day specific
+        maxDay: max,
+        meanDay: mean,
+        minDay: min,
     };
-    
-    //example return of console.log(maxAnn): <circle id="maxAnn" class="legend-circle-ann" r="16.504966285053317" cy="42.495033714946686" fill="#ff7e00" fill-opacity="0.9" stroke="#000000" cx="30">
 }
 
-function updateLegendAnn(attribute) {
+function updateLegendDay(attribute) {
     //create content for legend
-    var year = attribute.split("-")[1];
+    var calDay = attribute.slice(0,-4) + "21";
     //replace legent content
-    document.querySelector("span.year-ann").innerHTML = year;
+    //note on weird formatting: calDay is the unit for changing timestamps, -day suffix for dataset reference
+    //I'm using -day here for consistency with this JS and the related -ann data and JS
+    document.querySelector("span.calDay-day").innerHTML = calDay;  
 
     //get the max, mean, and min value as an object
-    var circleValues = getCircleValuesAnn(attribute);
+    var circleValues = getCircleValuesDay(attribute);
 
     for (var key in circleValues) {
         //get the radius and fill
-        var radius = calcPropRadiusAnn(circleValues[key]);
-        var fill = groupPropColorAnn(circleValues[key]);
+        var radius = calcPropRadiusDay(circleValues[key]);
+        var fill = groupPropColorDay(circleValues[key]);
 
         document.querySelector("#" + key).setAttribute("cy", 59 - radius);
         document.querySelector("#" + key).setAttribute("r", radius)
         document.querySelector("#" + key).setAttribute("fill", fill)
 
-        document.querySelector("#" + key + "-text-ann").textContent = Math.round(circleValues[key] * 100) / 100 + " AQI";
+        document.querySelector("#" + key + "-text-day").textContent = Math.round(circleValues[key] * 100) / 100 + " " + key.slice(0,-3);
     }
 }
 
 //Step 10: Resize proportional symbols according to new attribute values
-function updatePropSymbolsAnn(attribute){
-    map_ann.eachLayer(function(layer){
+function updatePropSymbolsDay(attribute){
+    map_day.eachLayer(function(layer){
 
         if (layer.feature && layer.feature.properties[attribute]){
           //access feature properties
            var props = layer.feature.properties;
 
            //update each feature's radius based on new attribute values
-           var radius = calcPropRadiusAnn(props[attribute]);
+           var radius = calcPropRadiusDay(props[attribute]);
            layer.setRadius(radius);
 
            //update each feature's color based on attribute values
-           var newColor = groupPropColorAnn(props[attribute]);
+           var newColor = groupPropColorDay(props[attribute]);
            layer.setStyle({fillColor: newColor});
 
            //add city to popup content string
-           var popupContent = "<p><b>Metro:</b> " + props.CBSA + "</p>";
+           var popupContent = "<p><b>CBSA:</b> " + props.CBSA + "</p>";
 
            //add formatted attribute to panel content string
-           var year = attribute.split("-")[1];
-           popupContent += "<p><b>Median AQI in " + year + ":</b> " + props[attribute] + "</p>";
+           var calDay = attribute.slice(0,-4)+'21';
+           popupContent += "<p><b>Median AQI on " + calDay + ":</b> " + props[attribute] + "</p>";
 
            //update popup with new content
            popup = layer.getPopup();
            popup.setContent(popupContent).update();
-        }
+        };
     });
 
-    updateLegendAnn(attribute);
+    updateLegendDay(attribute);
 }
 
-function processDataAnn(data){
-    //empty array to hold attributes
+function processDataDay(data){
+    //empty array to hold attributes (i.e. headers in geojson associated with data I want to map)
     var attributes = [];
 
-    //properties of the first feature in the dataset
+    //properties of the first feature in the dataset (i.e. all headers in geojson)
     var properties = data.features[0].properties;
 
     //push each attribute name into attributes array
     for (var attribute in properties){
         //only take attributes with Air Quality Index values
-        if (attribute.indexOf("AQI") > -1){
+        if (attribute.indexOf("2021") > -1){
             attributes.push(attribute);
-        }
-    }
+        };
+    };
     return attributes;
 }
 
+
 //Create new sequence controls
-function createSequenceControlsAnn(attributes){   
+function createSequenceControlsDay(attributes){   
     
     var SequenceControl = L.Control.extend({
-        options: {position: "bottomleft",},
+        options: {position: 'bottomleft',},
 
         onAdd: function () {
             // create the control container div with a particular class name
-            var container = L.DomUtil.create('div', 'sequence-control-container-ann');
+            var container = L.DomUtil.create('div', 'sequence-control-container-day');
 
             //create range input element (slider)
-            container.insertAdjacentHTML('beforeend', '<input class="range-slider-ann" type="range">')
+            container.insertAdjacentHTML('beforeend', '<input class="range-slider-day" type="range">')
 
             //add skip buttons
-            container.insertAdjacentHTML('beforeend', '<button class="step-ann" id="reverse" title="Reverse"><img src="img/arrow_left.png"></button>'); 
-            container.insertAdjacentHTML('beforeend', '<button class="step-ann" id="forward" title="Forward"><img src="img/arrow_right.png"></button>'); 
+            container.insertAdjacentHTML('beforeend', '<button class="step-day" id="reverse" title="Reverse"><img src="img/arrow_left.png"></button>'); 
+            container.insertAdjacentHTML('beforeend', '<button class="step-day" id="forward" title="Forward"><img src="img/arrow_right.png"></button>'); 
 
             //disable any mouse event listeners for the container
             L.DomEvent.disableClickPropagation(container);
@@ -243,82 +247,82 @@ function createSequenceControlsAnn(attributes){
         }
     });
     
-    map_ann.addControl(new SequenceControl());
+    map_day.addControl(new SequenceControl());
 
     ///////add listeners after adding the control!///////
     //set slider attributes
-    document.querySelector(".range-slider-ann").max = 6;
-    document.querySelector(".range-slider-ann").min = 0;
-    document.querySelector(".range-slider-ann").value = 0;
-    document.querySelector(".range-slider-ann").step = 1;
+    document.querySelector(".range-slider-day").max = 364;
+    document.querySelector(".range-slider-day").min = 0;
+    document.querySelector(".range-slider-day").value = 0;
+    document.querySelector(".range-slider-day").step = 1;
 
-    var steps = document.querySelectorAll('.step-ann');
+    var steps = document.querySelectorAll('.step-day');
 
     steps.forEach(function(step){
         step.addEventListener("click", function(){
-            var index = document.querySelector('.range-slider-ann').value;
+            var index = document.querySelector('.range-slider-day').value;
             //Step 6: increment or decrement depending on button clicked
             if (step.id == 'forward'){
                 index++;
                 //Step 7: if past the last attribute, wrap around to first attribute
-                index = index > 6 ? 0 : index;
+                index = index > 364 ? 0 : index;
             } else if (step.id == 'reverse'){
                 index--;
                 //Step 7: if past the first attribute, wrap around to last attribute
-                index = index < 0 ? 6 : index;
+                index = index < 0 ? 364 : index;
             };
 
             //Step 8: update slider
-            document.querySelector('.range-slider-ann').value = index;
+            document.querySelector('.range-slider-day').value = index;
 
             //Step 9: pass new attribute to update symbols
-            updatePropSymbolsAnn(attributes[index]);
+            updatePropSymbolsDay(attributes[index]);
         })
     })
 
     //Step 5: input listener for slider
-    document.querySelector('.range-slider-ann').addEventListener('input', function(){
+    document.querySelector('.range-slider-day').addEventListener('input', function(){
         //Step 6: get the new index value
         var index = this.value;
 
         //Step 9: pass new attribute to update symbols
-        updatePropSymbolsAnn(attributes[index]);
+        updatePropSymbolsDay(attributes[index]);
     });
 }
 
-function createLegendAnn(attributes) {
+function createLegendDay(attributes) {
     var LegendControl = L.Control.extend({
-        options: {position: "bottomright",},
+        options: {position: 'bottomright',},
 
         onAdd: function () {
             //create the control container with a particular class name
-            var container = L.DomUtil.create("div", "legend-control-container-ann");
+            var container = L.DomUtil.create("div", "legend-control-container-day");
 
-            container.innerHTML = '<p class="temporalLegend-ann">Median AQI in <span class="year-ann">2016</span></p>'
+            container.innerHTML = '<p class="temporalLegend-day">Median AQI on <span class="calDay-day">1/1/21</span></p>'
 
             //Step 1. start attribute legend svg string
-            var svg = '<svg id="attribute-legend-ann" width="160px" height="60px">';
+            var svg = '<svg id="attribute-legend-day" width="160px" height="60px">';
 
             //array of circle names to base loop on        
-            var circles = ["maxAnn", "meanAnn", "minAnn"];
+            var circles = ["maxDay", "meanDay", "minDay"];
 
             //Step 2: loop to add each circle and text to svg string
             for (var i = 0; i < circles.length; i++) {
                 //calculate r and cy and fill color
-                var radius = calcPropRadiusAnn(annDataStats[circles[i]]);
+                var radius = calcPropRadiusDay(dayDataStats[circles[i]]);
                 var cy = 59 - radius;
-                var fill = groupPropColorAnn(annDataStats[circles[i]]);
+                var fill = groupPropColorDay(dayDataStats[circles[i]]);
 
                 //circle string
-                svg += '<circle class="legend-circle-ann" id="' + circles[i] + '" r="' + radius + '"cy="' +
-                    cy + '" fill="' + fill + '"fill-opacity="0.9" stroke="#000000" cx="30"/>';
+                svg += '<circle class="legend-circle-day" id="' + circles[i] + '" r="' + radius + '"cy="' +
+                    cy + '" fill="' + fill + '"fill-opacity="0.9" stroke="#000000" cx="45"/>';
 
                 //evenly space out labels
                 var textY = i * 20 + 20;
 
                 //text string
-                svg += '<text id="' + circles[i] + '-text-ann" x="65" y="' + textY + '">' +
-                    Math.round(annDataStats[circles[i]] * 100) / 100 + " AQI" + "</text>";
+                svg += '<text id="' + circles[i] + '-text-day" x="85" y="' + textY + '">' +
+                    Math.round(dayDataStats[circles[i]] * 100) / 100 + " " + circles[i].slice(0,-3) + "</text>";
             }
 
             //close svg string
@@ -331,24 +335,24 @@ function createLegendAnn(attributes) {
         },
     });
 
-    map_ann.addControl(new LegendControl());
-    updateLegendAnn(attributes[0]); //change the legend-as-created from DataStats values to max-mean-min of first city
+    map_day.addControl(new LegendControl());
+    updateLegendDay(attributes[0]); //change the legend-as-created from DataStats values to max-mean-min of first city
 }
 
-function getDataAnn(map_ann){
+function getDataDay(map_day){
     //load the data
-    fetch("data/AQI_annual.geojson")
+    fetch("data/AQI_2021daily.geojson")
         .then(function(response){
             return response.json();
         })
         .then(function(json){
-            var attributes = processDataAnn(json);
-            calcStatsAnn(json);
+            var attributes = processDataDay(json); //attributes is a local variable to getDataDay function
+            calcStatsDay(json, attributes);
             //call function to create proportional symbols
-            createPropSymbolsAnn(json, attributes);
-            createSequenceControlsAnn(attributes);
-            createLegendAnn(attributes);
+            createPropSymbolsDay(json, attributes);
+            createSequenceControlsDay(attributes);
+            createLegendDay(attributes);
         })
 }
 
-document.addEventListener('DOMContentLoaded',createMapAnn);
+document.addEventListener('DOMContentLoaded',createMapDay);
