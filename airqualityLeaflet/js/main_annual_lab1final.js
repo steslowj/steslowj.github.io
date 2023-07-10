@@ -10,7 +10,8 @@ function createMapAnn(){
     //create the map, centered apprx. on the center of my US city data
     map_ann = L.map('mapcard-annual', {
         center: [38, -97],
-        zoom: 4
+        zoom: 4,
+        scrollWheelZoom: false
     });
 
     L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
@@ -167,7 +168,7 @@ function updateLegendAnn(attribute) {
         document.querySelector("#" + key).setAttribute("fill", fill)
 
         document.querySelector("#" + key + "-text-ann").textContent = Math.round(circleValues[key] * 100) / 100 + " " + key.slice(0,-3);
-        document.querySelector(".slider-text").innerHTML = year;
+        /* idea for later    document.querySelector(".slider-text").innerHTML = year; */
     }
 }
 
@@ -230,8 +231,10 @@ function createSequenceControlsAnn(attributes){
             // create the control container div with a particular class name
             var container = L.DomUtil.create('div', 'sequence-control-container-ann');
 
+            /* idea for later
             //placeholder for year near slider. will want to mimic createSequenceControl function to create a separate div above slider
             container.insertAdjacentHTML('beforeend', '<div class="slider-text" style="border: 3px solid red;">2000</p>');
+            */
 
             //create range input element (slider)
             container.insertAdjacentHTML('beforeend', '<input class="range-slider-ann" type="range">')
@@ -280,7 +283,7 @@ function createSequenceControlsAnn(attributes){
         })
     })
 
-    //Step 5: input listener for slider
+    //Step 5: input listener for sliderS
     document.querySelector('.range-slider-ann').addEventListener('input', function(){
         //Step 6: get the new index value
         var index = this.value;
@@ -298,7 +301,7 @@ function createLegendAnn(attributes) {
             //create the control container with a particular class name
             var container = L.DomUtil.create("div", "legend-control-container-ann");
 
-            container.innerHTML = '<p class="temporalLegend-ann">Median AQI in <span class="year-ann">2000</span><br>Stats of Median values:</p>'
+            container.innerHTML = '<p class="temporalLegend-ann">Stats of <br>Median AQI in <span class="year-ann">2000</span>:</p>'
 
             //Step 1. start attribute legend svg string
             var svg = '<svg id="attribute-legend-ann" width="160px" height="60px">';
@@ -356,3 +359,7 @@ function getDataAnn(map_ann){
 }
 
 document.addEventListener('DOMContentLoaded',createMapAnn);
+
+const CBSA = ["New York-Newark-Jersey City, NY-NJ-PA", "Los Angeles-Long Beach-Anaheim, CA", "Chicago-Naperville-Elgin, IL-IN-WI"]
+const cityList_ann = document.querySelector(".cityList_ann");
+

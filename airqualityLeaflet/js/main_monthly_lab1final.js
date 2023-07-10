@@ -11,7 +11,8 @@ function createMapMon(){
     //create the map, centered apprx. on the center of my US city data
     map_mon = L.map('mapcard-monthly', {
         center: [38, -97],
-        zoom: 4
+        zoom: 4,
+        scrollWheelZoom: false
     });
 
     L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
@@ -296,7 +297,7 @@ function createLegendMon(attributes) {
             //create the control container with a particular class name
             var container = L.DomUtil.create("div", "legend-control-container-mon");
 
-            container.innerHTML = '<p class="temporalLegend-mon">Median AQI in <span class="month-mon">Jan</span></p>'
+            container.innerHTML = '<p class="temporalLegend-mon">Stats of <br>Median AQI in <span class="month-mon">Jan</span></p>'
 
             //Step 1. start attribute legend svg string
             var svg = '<svg id="attribute-legend-mon" width="160px" height="60px">';
