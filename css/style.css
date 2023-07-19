@@ -1,0 +1,88 @@
+body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
+.w3-third img{margin-bottom: -6px; opacity: 0.8; cursor: pointer}
+.w3-third img:hover{opacity: 1}
+
+ul.breadcrumb {
+margin:0;
+padding: 10px 16px;
+list-style: none;
+background-color: #eee;
+}
+
+/* Display list items side by side */
+ul.breadcrumb li {
+display: inline;
+font-size: 18px;
+}
+
+/* Add a slash symbol (/) before/behind each list item */
+ul.breadcrumb li+li:before {
+padding: 8px;
+color: black;
+content: "/\00a0";
+}
+
+/* Add a color to all links inside the list */
+ul.breadcrumb li a {
+color: #777777;
+text-decoration: none;
+}
+
+/* Add a color on mouse-over */
+ul.breadcrumb li a:hover {
+color: #377228;
+text-decoration: underline;
+} 
+
+html {
+  scroll-behavior: smooth;
+}
+
+.social-icons .social-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 4.2rem;
+  width: 4.2rem;
+  background-color: #5f6767;
+  color: #fff;
+  border-radius: 100%;
+  font-size: 1.8rem;
+  margin-right: 1.5rem;
+}
+
+.social-icons .social-icon:last-child {
+  margin-right: 0;
+}
+
+.social-icons .social-icon:hover {
+  background-color: #78aa8c;
+}
+
+.general-icons .general-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 8.0rem;
+  width: 8.0rem;
+  background-color: #78aa8c;
+  color: #fff;
+  border-radius: 100%;
+  font-size: 0.5rem;
+  margin-right: 1.5rem;
+}
+
+.general-icons .general-icon:last-child {
+  margin-right: 0;
+}
+
+.special-hover:hover {
+    box-shadow: 0 0 10px 6px #eed4de;    
+}
+
+/* saving fonts for later use
+  font-family: "Patrick Hand", "Myriad Pro Light", Aller, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-family: Montserrat, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color 
+  font-family: Montserrat, Calibri, Corben, Aller, Arial;
+/*
