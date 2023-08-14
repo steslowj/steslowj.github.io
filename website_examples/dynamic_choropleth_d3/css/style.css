@@ -87,7 +87,7 @@ option {
 }
 
 .infolabel {
-  position: absolute;
+  position: fixed;
   height: auto;
   min-width: 100px;
   max-width: 300px;
