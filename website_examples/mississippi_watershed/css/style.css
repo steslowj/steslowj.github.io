@@ -1,0 +1,283 @@
+/*Styling related to Leaflet map*/
+
+#map {
+  height: calc(100vh - 76px); /*Npx is height of padding and line height of header, no stack */
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+@media screen and (max-width:600px) {
+  #map{
+    height: calc(100vh - 126px);
+  }
+}
+.info {
+  padding: 6px 8px;
+  font: 14px/16px Arial, Helvetica, sans-serif;
+  background: white;
+  background: rgba(255,255,255,0.9);
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.65);
+  border-radius: 4px;
+  max-width: 300px;
+}
+.info h2 {
+  font-size: 24px;
+  line-height: 26px;
+  margin-bottom: 0.3rem;
+}
+.info h3 {
+  margin: 5px 0 5px;
+  color: #777;
+}
+.info h4 {
+  margin: 0 0 5px;
+  color: #777;
+}
+@media screen and (max-width:1000px) {
+  .leaflet-top .info {
+    transform:translate(-43px,-175px);
+  }
+  .leaflet-control-layers{
+    transform:translate(0px,40px);
+  }
+}
+.legend {
+  line-height: 18px;
+  color: #555;
+}
+.legend i {
+  width: 18px;
+  height: 18px;
+  float: left;
+  margin-right: 8px;
+  opacity: 0.7;
+}
+.sequence-control-container {
+  display:flex;
+  flex-direction: column;
+  border-radius: 4px;
+  padding: 4px;
+  background-color: rgb(255, 255, 255, 0.9);
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.65);
+}
+.slider-text {
+  display: flex;
+  font-size:large;
+  margin:auto;
+  user-select: none;
+}
+.range-slider {  
+  width: auto;
+  margin-left:0.5rem;
+  margin-right:0.5rem;
+  cursor: pointer;
+}
+/*when the screen is 500px wide or less, hide slider and reformat*/
+@media screen and (max-width: 500px) {
+  .range-slider {
+    display: none;
+  }
+  .slider-text{
+    font-size: 16px;
+  }
+  .step{
+    display: inline-flex;
+  }
+  #reverse{
+    margin-left:4px;
+    margin-right: 32px;
+  }
+}
+.step {  
+  width: 2.0rem;
+  border: 0px solid #eee;
+  border-radius: 3px;
+  background: none;
+  padding:1px;
+}
+.step:hover {
+  background-color: #9ed2eb;
+  cursor: pointer;
+}
+.step:active {
+  background-color: #93d6a0;
+  cursor: pointer;
+}
+.step img {  
+  width: 98%;
+  height: 98%;
+  padding:1px;
+}
+
+.bi-arrows-angle-expand {
+  display: block;
+  transform: rotate(90deg) !important;
+}
+.leaflet-control-dialog{
+  font-size: 1rem;
+  font-family: Arial, Helvetica, sans-serif;
+
+}
+.leaflet-control-dialog-inner{
+  overflow:hidden;
+}
+.leaflet-control-dialog i {
+  color: #777;
+}
+.leaflet-control-dialog i:hover {
+  background-color: #ceeffe;
+}
+.dropdown{
+  font-size: 0.9rem;
+  font-family: Arial, Helvetica, sans-serif;
+  overflow: hidden;
+  width:240px;
+  text-overflow: ellipsis;
+}
+#dropdown-dialog p{
+  margin-top:0;
+  user-select: none;
+}
+/*when the screen is 590px wide or less, move dialog down*/
+@media screen and (max-width: 590px) {
+  .leaflet-control-dialog{
+    transform: translate(-20px,-20px);
+  }
+}
+/*when the screen is 550px wide or less, move dialog down*/
+@media screen and (max-width: 550px) {
+  .leaflet-control-dialog{
+    transform: translate(-20px,50px);
+  }
+}
+
+/*Styling related to webpage*/
+body {
+  margin:0;
+  padding:0;
+  font-family: "Lato", sans-serif;
+}
+
+.header {
+  overflow: hidden;
+  background-color: #f2f4ff;
+  padding: 8px 10px;
+  text-align: center;
+  color: #063343;
+  background-image: linear-gradient(to bottom, #f2f4ff, #50999f29);
+  border-bottom:#007399 1px solid;
+}
+
+.header .map-button {
+  float: left;
+  color: black;
+  padding: 10px;
+  margin: 10px 8px;
+  border: #eaecee 1px solid;
+  font: 16px/18px Arial, Helvetica, sans-serif;
+  background: white;
+  background: rgba(255,255,255,0.9);
+  box-shadow: 0 0px 5px rgba(0, 0, 0, 0.25);
+  border-radius: 5px;
+  user-select: none;
+}
+
+.header .title {
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 25px;
+  line-height: 25px;
+  font-weight: bold;
+  font-style: italic;
+  float: right;
+  margin: 0 calc(50vw - 300px) 0 0;
+}
+.header .subtitle {
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+}
+
+.header .map-button:hover {
+  background-color: #9ed2eb;
+  border: #9ed2eb 1px solid;
+  color: black;
+  cursor: pointer;
+}
+
+/*When screen is 1000px or less (decreasing) reduce title right margin so items don't stack*/
+@media screen and (max-width:1000px) {
+  .header .title {
+    margin: 0 10px 0 0;
+  }
+}
+@media screen and (max-width:800px) {
+  .header .title {
+    font-size:18px;
+    margin: 0 2px 0 0;
+  }
+}
+
+/*when the screen is 500px wide or less, stack the links on top of each other */
+@media screen and (max-width: 500px) {
+  .header .map-button {
+    display: block;
+    text-align: left;
+    padding: 8px;
+  }
+  .header .title {
+    float: none;
+    font-size:16px;
+    font-style: normal;
+  }
+  .header .subtitle{
+    font-size: 16px;
+  }
+}
+
+/*Styling related to sidepanel plugin*/
+.header h1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.header a {
+  font-size: 16px;
+  color: #007399;
+  text-decoration: none;
+  margin-left: 24px;
+}
+
+.header a:hover {
+  color: #135f79;
+  text-decoration: underline;
+}
+
+.header a span {
+  margin-left: 4px;
+}
+
+.header a svg {
+  vertical-align: middle;
+}
+
+.sidepanel-content {
+  font-size: 1rem;
+}
+
+.sidepanel-content h4 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.sidepanel-content a {
+  text-decoration: none;
+  font-size: 1rem;
+  color: #007399;
+  transition: color 0.3s ease-in;
+}
+
+.sidepanel-content a:hover {
+  color: #135f79;
+  text-decoration: underline;
+}
