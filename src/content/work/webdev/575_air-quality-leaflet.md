@@ -1,5 +1,5 @@
 ---
-title: Air Quality Index with Leaflet JS
+title: Air Quality with Leaflet JS
 publishDate: 2023-07-10 00:00:00
 img: /assets/preview/575_airquality_leaflet.png
 img_alt: A website showing the United States with colored points over cities that represent air quality values.

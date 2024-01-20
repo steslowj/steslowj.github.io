@@ -1,5 +1,5 @@
 ---
-title: Great Dividing Range Cycling Race
+title: Great Dividing Range Cycling Race (Preview)
 publishDate: 2023-03-01 00:00:00
 img: /assets/preview/572_cycling_map.png
 img_alt: A map of southeastern Australia with terrain brightly colored and a cycling route overlaid on top with cities and landmarks labeled.

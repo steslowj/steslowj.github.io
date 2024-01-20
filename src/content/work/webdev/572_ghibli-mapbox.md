@@ -1,5 +1,5 @@
 ---
-title: Ghibli Inspired Mapbox Studio Theme
+title: Ghibli Inspired Mapbox Theme
 publishDate: 2023-04-10 00:00:00
 img: /assets/preview/572_ghibli.png
 img_alt: A map showing eastern Asia with bright blue hues for ocean and varied greens for different terrain and a storybook-like font for labels.

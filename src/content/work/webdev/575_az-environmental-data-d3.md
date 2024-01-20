@@ -1,5 +1,5 @@
 ---
-title: Environmental Data Vis with D3 JS
+title: Data Vis with D3 JS
 publishDate: 2023-08-14 00:00:00
 img: /assets/preview/575_az-d3.png
 img_alt: A map of counties in Arizona, USA adjacent to a bar graph of environmental parameters.

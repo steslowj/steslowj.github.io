@@ -1,0 +1,112 @@
+---
+// Learn about using Astro layouts:
+// https://docs.astro.build/en/core-concepts/layouts/
+
+// Component Imports
+import Footer from '../components/Footer.astro';
+import ThemeToggle from '../components/ThemeToggle.astro';
+
+interface Props {
+	title?: string | undefined;
+	description?: string | undefined;
+}
+
+const { title, description } = Astro.props;
+
+/** Main menu items */
+const textLinks: { label: string; href: string }[] = [
+	{ label: 'home', href: '/' },
+	{ label: 'portfolio', href: '/portfolio/' },
+	{ label: 'resume', href: '/resume/' },
+];
+
+import '../styles/styles.css';
+
+---
+
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+    <meta name="description" property="og:description" content={description} />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+
+    <link rel="icon" type="image/svg+xml" href="../../assets/favicon.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+
+    <script is:inline>
+      // This code is inlined in the head to make dark mode instant & blocking.
+      const getThemePreference = () => {
+        if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
+          return localStorage.getItem('theme');
+        }
+        return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      };
+      const isDark = getThemePreference() === 'dark';
+      document.documentElement.classList[isDark ? 'add' : 'remove']('theme-dark');
+
+      if (typeof localStorage !== 'undefined') {
+        // Watch the document element and persist user preference when it changes.
+        const observer = new MutationObserver(() => {
+          const isDark = document.documentElement.classList.contains('theme-dark');
+          localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        });
+        observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+      }
+    </script>
+	</head>
+	<body>
+
+    <div id="sidebar">
+      <div class="user boxcard">
+        <h3 class="name">Jessica <span class="accent">Steslow</span></h3>
+        <p class="post">· maps and data ·</p>
+        <p class="post">· green engineering ·</p>
+        <img src="../../../assets/lightbulb.svg" alt="a lightbulb with vines inside the glass"/>
+      </div>
+    
+        <nav class="navbar boxcard">
+          <ul>
+            {
+              textLinks.map(({ label, href }) => (
+                <li>
+                  <a
+                    aria-current={Astro.url.pathname === href}
+                    class:list={[
+                      'link',
+                      {
+                        active:
+                          Astro.url.pathname === href ||
+                          (href !== '/' && Astro.url.pathname.startsWith(href)),
+                      },
+                    ]}
+                    href={href}
+                  >
+                    {label}
+                  </a> 
+                </li>
+              ))
+            }
+          </ul>
+          <div class="theme-toggle">
+            <ThemeToggle />
+          </div>
+        </nav>
+    
+    </div>
+    <div class="baselayout-content">
+      <slot />
+    </div>
+    <Footer />
+
+    <!-- jquery cdn link -->
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js' integrity='sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==' crossorigin='anonymous'></script>
+
+    <!-- custom js file link -->
+    <script src="../js/main.js" ></script>
+
+	</body>
+</html>
