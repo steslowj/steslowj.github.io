@@ -1,231 +1,29 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<title>Jessica Steslow's Website</title>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap">
-<link rel="stylesheet" href="css/style.css">
-<link rel="icon" type="image/x-icon" href="img/favicon.ico">
-</head>
-<body class="w3-light-grey w3-content" style="max-width:1600px; background-color: #a2c5bb !important;">
+<!DOCTYPE html><html lang="en"> <head><meta charset="UTF-8"><meta name="description" property="og:description" content="The personal site of Jessica Steslow"><meta name="viewport" content="width=device-width"><meta name="generator" content="Astro v4.0.8"><title>Jessica Steslow: Personal Site</title><link rel="icon" type="image/svg+xml" href="../assets/favicon.ico"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet"><script>
+	// This code is inlined in the head to make dark mode instant & blocking.
+	const getThemePreference = () => {
+		if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
+			return localStorage.getItem('theme');
+		}
+		return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+	};
+	const isDark = getThemePreference() === 'dark';
+	document.documentElement.classList[isDark ? 'add' : 'remove']('theme-dark');
 
-<!-- Sidebar/menu -->
-<nav class="w3-sidebar w3-bar-block w3-white w3-animate-left w3-text-grey w3-collapse w3-top w3-center" style="z-index:3;width:300px;font-weight:bold" id="mySidebar"><br>
-  <h3 class="w3-padding-64 w3-center" style="font-family: 'Patrick Hand';"><b>JESSICA<br>STESLOW</b></h3>
-  <a href="javascript:void(0)" onclick="w3_close()" class="w3-bar-item w3-button w3-padding w3-hide-large">CLOSE</a>
-  <div class = "w3-bar-item" style="font-family: 'Patrick Hand';">Scroll:</div>
-  <a href="#portfolio" onclick="w3_close()" class="w3-bar-item w3-button">PORTFOLIO</a> 
-  <a href="#webprojects" onclick="w3_close()" class="w3-bar-item w3-button">WEB PROJECTS</a>
-  <a href="#about" onclick="w3_close()" class="w3-bar-item w3-button">ABOUT ME</a> 
-  <div class = "w3-bar-item" style="font-family:'Patrick Hand'; padding-top:3rem;">New Page:</div>
-  <a href="resume.html" onclick="w3_close()" class="w3-bar-item w3-button">RESUME</a> 
-</nav>
-
-<!-- Top menu on small screens -->
-<header class="w3-container w3-top w3-hide-large w3-white w3-xlarge w3-padding-16">
-  <span class="w3-left w3-padding" style="font-family: 'Patrick Hand';">JESSICA STESLOW</span>
-  <a href="javascript:void(0)" class="w3-right w3-button w3-white" onclick="w3_open()">☰</a>
-</header>
-
-<!-- Overlay effect when opening sidebar on small screens -->
-<div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
-
-<!-- !PAGE CONTENT! -->
-<div class="w3-main w3-light-grey" style="margin-left:300px">
-
-  <!-- Push down content on small screens --> 
-  <div class="w3-hide-large" style="margin-top:83px"></div>
-
-  <!-- Breadcrumbs -->
-  <ul class="breadcrumb" style="display:none">
-    <li><a href="#">Home</a></li>
-    <li>Resume</li>
-  </ul> 
-  
-  <!-- Introduction section -->
-  <div class="w3-container w3-light-grey w3-padding-32 w3-padding-large" style="height:17rem;" id="intro">
-    <div class="w3-content" style="max-width:800px;">
-      <div class="w3-cell-row">
-        <div class="w3-cell w3-cell-top" style="width:70%">
-        <h4><b>Hello!</b></h4>
-        <p>I am a water focused civil engineer, cartographer, data scientist, and designer.</p>
-        <p>This website is a handy place to share my work.</p>
-        </div>
-        <div class="w3-cell w3-padding-16 w3-cell-bottom">
-        <img src="img/pin.png" alt="Me" class="w3-image" style="width:150px;">
-        </div>
-      </div>
-    </div>
-  </div>
-
-    <!-- Photo grid -->
-    <!-- images 500 x 600 in template, but will rescale into columns -->
-    <div class="w3-row" id="portfolio">
-      <div class="w3-third">
-        <img src="img/portfolio_preview/Geo370_Arizona.png" style="width:100%" onclick="onClick(this)" alt="Simple reference map of Arizona, created like a page in a magazine on states">
-        <img src="img/portfolio_preview/Geog370_Africa.png" style="width:100%" onclick="onClick(this)" alt="Challenging project on labeling physical features">
-      </div>
-  
-      <div class="w3-third">
-        <img src="img/portfolio_preview/Geog370_Crochet.png" style="width:100%" onclick="onClick(this)" alt="Final project for Geog 370, an exploration on crochet geographically">
-        <img src="img/portfolio_preview/AZ-sketchy.png" style="width:100%" onclick="onClick(this)" alt="Personal project testing using ESRI's style 'Sketchy'">
-      </div>
-      
-      <div class="w3-third">
-        <img src="img/portfolio_preview/Geog572_CyclingRace_map.png" style="width:100%" onclick="onClick(this)" alt="Learning how to use photoshop for raster processing">
-        <img src="img/portfolio_preview/Geog572_Houseplant_bivariate.png" style="width:100%" onclick="onClick(this)" alt="Part of a project evaluating houseplants and fertility rate in the USA">
-        <img src="img/portfolio_preview/BridgeportPark.png" style="width:100%" onclick="onClick(this)" alt="Personal project testing ESRI's style 'My Precious'">
-      </div>
-    </div>
-  
-    <!-- Pagination -->
-    <div class="w3-center w3-padding-32">
-      <div class="w3-bar" style="background-color: #d7e9d7; display: none;">
-        <a href="#" class="w3-bar-item w3-button w3-hover-black">«</a>
-        <a href="#" class="w3-bar-item w3-black w3-button">1</a>
-        <a href="#" class="w3-bar-item w3-button w3-hover-black">2</a>
-        <a href="#" class="w3-bar-item w3-button w3-hover-black">3</a>
-        <a href="#" class="w3-bar-item w3-button w3-hover-black">4</a>
-        <a href="#" class="w3-bar-item w3-button w3-hover-black">»</a>
-      </div>
-    </div>
-    
-    <!-- Modal for full size images on click-->
-    <div id="modal01" class="w3-modal w3-black" style="padding-top:0" onclick="this.style.display='none'">
-      <span class="w3-button w3-black w3-xlarge w3-display-topright">X</span>
-      <div class="w3-modal-content w3-animate-zoom w3-center w3-transparent w3-padding-64">
-        <img id="img01" class="w3-image">
-        <p id="caption"></p>
-      </div>
-    </div>
-
-  <!-- Web Projects section -->
-  <div class="w3-container w3-padding-64 w3-padding-large" id="webprojects" style="background-color:#cccccc;">
-    <div class="w3-content" style="max-width:800px">
-      <h4 class="w3-center"><b>Web Projects</b></h4>
-      <p style="margin-top:2rem; font-style: italic;">Here is a collection of web-based projects I have worked on:</p>
-      <br>
-      <!-- images 900 x 600 -->
-      <div class="w3-cell-row w3-padding-large">
-        <div class="w3-col m5 s12 w3-card">
-          <a href="website_examples/airquality_leaflet/airquality_index.html" target="_blank">
-          <div class="w3-bar-block w3-center w3-grey w3-hover-opacity">
-            <div class="w3-bar-item w3-black" style="font-size: large;">Air Quality Index exploration</div>
-            <div class="w3-bar-item" style="padding:0"><img class="w3-image" src="img/website_preview/airquality_leaflet.png"></div>
-          </div></a>
-        </div>
-        <div class="w3-col m2 s12">
-          <div class="w3-bar-block w3-center">
-            <div class="w3-bar-item"></div>
-            <div class="w3-bar-item"></div>
-          </div>
-        </div>
-        <div class="w3-col m5 s12 w3-card">
-          <a href="https://api.mapbox.com/styles/v1/jsteslow/clg2lej4k000201o146e8xcuz.html?title=view&access_token=pk.eyJ1IjoianN0ZXNsb3ciLCJhIjoiY2xmc3FpMnFwMDhodDNmcGg3anoyaXRjNCJ9.8458oF27KBZyDalUS84ctg&zoomwheel=true&fresh=true#1.67/14.1/122.1" target="_blank">
-          <div class="w3-bar-block w3-center w3-grey w3-hover-opacity">
-            <div class="w3-bar-item w3-black" style="font-size: large;">Studio Ghibli Mapbox Theme</div>
-            <div class="w3-bar-item" style="padding:0"><img class="w3-image" src="img/website_preview/ghibli.png"></div>
-          </div></a>
-        </div>
-      </div>
-      <div class="w3-cell-row w3-padding-large">
-        <div class="w3-col m5 s12 w3-card">
-          <a href="website_examples/dynamic_choropleth_d3/environmental_az_index.html" target="_blank">
-          <div class="w3-bar-block w3-center w3-grey w3-hover-opacity">
-            <div class="w3-bar-item w3-black" style="font-size: large;">Dynamic Choropleth with D3</div>
-            <div class="w3-bar-item" style="padding:0"><img class="w3-image" src="img/website_preview/az_choropleth_d2_blue.png"></div>
-          </div></a>
-        </div>
-        <div class="w3-col m2 s12">
-          <div class="w3-bar-block w3-center">
-            <div class="w3-bar-item"></div>
-            <div class="w3-bar-item"></div>
-          </div>
-        </div>
-        <div class="w3-col m5 s12 w3-card">
-          <a href="website_examples/mississippi_watershed/map.html" target="_blank">
-          <div class="w3-bar-block w3-center w3-grey w3-hover-opacity">
-            <div class="w3-bar-item w3-black" style="font-size: large;">Mississippi hydroSHEDS</div>
-            <div class="w3-bar-item" style="padding:0"><img class="w3-image" src="img/website_preview/mississippi_map.png"></div>
-          </div></a>
-        </div>
-      </div>
-
-
-    <br><br><br><br><br><br>
-    </div>
-  </div>
-  
-
-  <!-- About Me section -->
-  <div class="w3-container w3-dark-grey w3-center w3-text-light-grey w3-padding-64 w3-padding-large" id="about">
-    <h4><b>About Me</b></h4>
-    
-    <div class="w3-content w3-justify" style="max-width:800px">
-      <h4>Civil Engineer & GIS Analyst</h4>
-      <div class="w3-center">
-      <img src="img/profile_sun.jpg" alt="Me" class="w3-image w3-padding-32" width="600" height="650">
-      <h5>Math enthusiast, excited to bring art and science together.</h5>
-      </div>
-      <div class="w3-row-padding" style="width:600px; margin:auto;">
-        <div class="w3-col m12 l6">
-          <ul style="list-style: none;">
-            <li>> <b>Certified P.E.</b> Civil, AZ No. 75715</li>
-            <li>> <b>Degree 1</b>: B.S. Civil Engineering</li>
-            <li>> <b>Degree 2</b>: M.S. GIS (in progress)</li>
-          </ul>
-        </div>
-        <div class="w3-col m12 l6">
-          <ul style="list-style: none;">
-            <li style="margin-right:50px">> <b>Tucson, AZ</b></li>
-            <li>> <b>steslow@wisc.edu</b></li>
-          </ul>
-        </div>
-      </div>
-      <p>Math is where I thrive and is what connects my school and professional experience together, but I hope to bring the best of both civil 
-        engineering and GIS worlds together. My civil background gives me a foundational context of water resources and civil construction projects, 
-        while GIS gives me a communications focused perspective and GIS technical skills. The intersectional nature of GIS allows me to bring data 
-        fluency and art into the civil engineering space. 
-      </p>
-      <br>
-      <h4>Outside of Work</h4>
-      <p>I can be found enjoying hiking and cycling around Tucson, drinking tea, and gaming- video, tabletop, and board!</p>
-
-
-    </div>
-  </div>
-
-  
-  <div class="w3-black w3-center w3-padding-24">Created by Jessica Steslow with <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank" class="w3-hover-opacity">w3.css</a> July 2023</div>
-
-<!-- End page content -->
-</div>
-
-
-<script>
-// Script to open and close sidebar
-function w3_open() {
-  document.getElementById("mySidebar").style.display = "block";
-  document.getElementById("myOverlay").style.display = "block";
-}
- 
-function w3_close() {
-  document.getElementById("mySidebar").style.display = "none";
-  document.getElementById("myOverlay").style.display = "none";
-}
-
-// Modal Image Gallery
-function onClick(element) {
-  document.getElementById("img01").src = element.src;
-  document.getElementById("modal01").style.display = "block";
-  var captionText = document.getElementById("caption");
-  captionText.innerHTML = element.alt;
-}
-
-</script>
-
-</body>
-</html>
+	if (typeof localStorage !== 'undefined') {
+		// Watch the document element and persist user preference when it changes.
+		const observer = new MutationObserver(() => {
+			const isDark = document.documentElement.classList.contains('theme-dark');
+			localStorage.setItem('theme', isDark ? 'dark' : 'light');
+		});
+		observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+	}
+</script><link rel="stylesheet" href="/_astro/index.vgDZEKll.css" />
+<style>svg[data-astro-cid-patnjmll]{vertical-align:middle;width:1em;height:1em}
+</style><script type="module" src="/_astro/hoisted.k67WCocl.js"></script></head> <body> <div id="sidebar"> <div class="user boxcard"> <h3 class="name">Jessica <span class="accent">Steslow</span></h3> <p class="post">· maps and data ·</p> <p class="post">· green engineering ·</p> <img src="../../assets/lightbulb.svg" alt="a lightbulb with vines inside the glass"> </div> <nav class="navbar boxcard"> <ul> <li> <a aria-current="true" class="link active" href="/"> home </a> </li><li> <a class="link" href="/portfolio/"> portfolio </a> </li><li> <a class="link" href="/resume/"> resume </a> </li> </ul> <div class="theme-toggle"> <theme-toggle data-astro-cid-x3pjskd3> <button data-astro-cid-x3pjskd3> <span class="sr-only" data-astro-cid-x3pjskd3>Dark theme</span> <span class="icon light" data-astro-cid-x3pjskd3><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 256 256" aria-hidden="true" stroke="currentcolor" fill="currentcolor" class="astro-patnjmll" data-astro-cid-patnjmll> <g data-astro-cid-patnjmll><circle cx="128" cy="128" r="60" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/><path fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" d="M128 36V16M63 63 49 49m-13 79H16m47 65-14 14m79 13v20m65-47 14 14m13-79h20m-47-65 14-14"/></g>  </svg> </span> <span class="icon dark" data-astro-cid-x3pjskd3><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 256 256" aria-hidden="true" stroke="currentcolor" fill="currentcolor" class="astro-patnjmll" data-astro-cid-patnjmll> <g data-astro-cid-patnjmll><path fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" d="M216 112V64m24 24h-48m-24-64v32m16-16h-32m65 113A92 92 0 0 1 103 39h0a92 92 0 1 0 114 114Z"/></g>  </svg> </span> </button> </theme-toggle>   </div> </nav> </div> <div class="baselayout-content">  <section class="hero" id="hero"> <h3>Hi there !</h3> <h1>I'm <span class="accent">Jessica Steslow</span></h1> <p>I'm a water-focused engineer with a love of digital cartography <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 256 256" aria-hidden="true" stroke="currentcolor" fill="currentcolor" class="astro-patnjmll" data-astro-cid-patnjmll> <g data-astro-cid-patnjmll><path fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M40 128h176m-72-72 72 72-72 72"/></g>  </svg>  GIS (Geographic Information Systems). This is my personal website and portfolio. Please take a look around! </p> <p class="hero-icon-row">Find me on:
+<span class="hero-icon"> <a href="https://www.linkedin.com/in/jessicasteslow/" target="_blank"> <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 256 256" aria-hidden="true" stroke="currentcolor" fill="currentcolor" class="astro-patnjmll" data-astro-cid-patnjmll> <g data-astro-cid-patnjmll><rect width="184" height="184" x="36" y="36" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" rx="8"/><path fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" d="M120 112v64m-32-64v64m32-36a28 28 0 0 1 56 0v36"/><circle stroke="none" cx="88" cy="80" r="12"/></g>  </svg> </a></span> <span class="hero-icon"> <a href="https://github.com/steslowj" target="_blank"> <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 256 256" aria-hidden="true" stroke="currentcolor" fill="currentcolor" class="astro-patnjmll" data-astro-cid-patnjmll> <g data-astro-cid-patnjmll><g stroke-linecap="round" stroke-linejoin="round"><path fill="none" stroke-width="14.7" d="M55.7 167.2c13.9 1 21.3 13.1 22.2 14.6 4.2 7.2 10.4 9.6 18.3 7.1l1.1-3.4a60.3 60.3 0 0 1-25.8-11.9c-12-10.1-18-25.6-18-46.3"/><path fill="none" stroke-width="16" d="M61.4 205.1a24.5 24.5 0 0 1-3-6.1c-3.2-7.9-7.1-10.6-7.8-11.1l-1-.6c-2.4-1.6-9.5-6.5-7.2-13.9 1.4-4.5 6-7.2 12.3-7.2h.8c4 .3 7.6 1.5 10.7 3.2-9.1-10.1-13.6-24.3-13.6-42.3 0-11.3 3.5-21.7 10.1-30.4A46.7 46.7 0 0 1 65 67.3a8.3 8.3 0 0 1 5-4.7c2.8-.9 13.3-2.7 33.2 9.9a105 105 0 0 1 50.5 0c19.9-12.6 30.4-10.8 33.2-9.9 2.3.7 4.1 2.4 5 4.7 5 12.7 4 23.2 2.6 29.4 6.7 8.7 10 18.9 10 30.4 0 42.6-25.8 54.7-43.6 58.7 1.4 4.1 2.2 8.8 2.2 13.7l-.1 23.4v2.3"/><path fill="none" stroke-width="16" d="M160.9 185.7c1.4 4.1 2.2 8.8 2.2 13.7l-.1 23.4v2.3A98.6 98.6 0 1 0 61.4 205c-1.4-2.1-11.3-17.5-11.8-17.8-2.4-1.6-9.5-6.5-7.2-13.9 1.4-4.5 6-7.2 12.3-7.2h.8c4 .3 7.6 1.5 10.7 3.2-9.1-10.1-13.6-24.3-13.6-42.3 0-11.3 3.5-21.7 10.1-30.4A46.4 46.4 0 0 1 65 67.3a8.3 8.3 0 0 1 5-4.7c2.8-.9 13.3-2.7 33.2 9.9a105 105 0 0 1 50.5 0c19.9-12.6 30.4-10.8 33.2-9.9 2.3.7 4.1 2.4 5 4.7 5 12.7 4 23.2 2.6 29.4 6.7 8.7 10 18.9 10 30.4.1 42.6-25.8 54.7-43.6 58.6z"/><path fill="none" stroke-width="18.7" d="m170.1 203.3 17.3-12 17.2-18.7 9.5-26.6v-27.9l-9.5-27.5" /><path fill="none" stroke-width="22.7" d="m92.1 57.3 23.3-4.6 18.7-1.4 29.3 5.4m-110 32.6-8 16-4 21.4.6 20.3 3.4 13" /><path fill="none" stroke-width="13.3" d="M28.8 133a100 100 0 0 0 66.9 94.4v-8.7c-22.4 1.8-33-11.5-35.6-19.8-3.4-8.6-7.8-11.4-8.5-11.8"/></g></g>  </svg> </a></span> <span class="hero-icon"> <a href="mailto:steslowj@gmail.com" target="_blank"> <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 256 256" aria-hidden="true" stroke="currentcolor" fill="currentcolor" class="astro-patnjmll" data-astro-cid-patnjmll> <g data-astro-cid-patnjmll><rect width="256" height="256" fill="none"/><polyline points="224 56 128 144 32 56" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/><path d="M32,56H224a0,0,0,0,1,0,0V192a8,8,0,0,1-8,8H40a8,8,0,0,1-8-8V56A0,0,0,0,1,32,56Z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/><line x1="110.55" y1="128" x2="34.47" y2="197.74" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/><line x1="221.53" y1="197.74" x2="145.45" y2="128" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/></g>  </svg> </a></span> </p> </section> <section id="about" class="about"> <h2 class="heading"><span class="accent">about </span>me</h2> <p>I have an intersectional professional background but I like to think it's brought together by a strong interest in math and wanting to work on sustainability. </p> <div class="about-container"> <div class="about-img"> <img src="../../assets/steslow.jpg" class="img" alt=""> </div> <div class="about-summary"> <h3>Civil Engineer &amp; GIS Analyst</h3> <p>
+I started as a civil engineer working on water resources and I found I loved worked on GIS. I am working on a master's degree in GIS to hone these skills.
+</p> <div class="about-lists"> <ul class="list-left"> <li><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 256 256" aria-hidden="true" stroke="currentcolor" fill="currentcolor" class="astro-patnjmll" data-astro-cid-patnjmll> <g data-astro-cid-patnjmll><rect width="256" height="256" fill="none"/><polyline points="96 48 176 128 96 208" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/></g>  </svg> <strong>Certified PE:</strong> <span>Civil, AZ #75715</span></li> <li><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 256 256" aria-hidden="true" stroke="currentcolor" fill="currentcolor" class="astro-patnjmll" data-astro-cid-patnjmll> <g data-astro-cid-patnjmll><rect width="256" height="256" fill="none"/><polyline points="96 48 176 128 96 208" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/></g>  </svg>  <strong>MS:</strong> <span>GIS Online Development</span></li> <li><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 256 256" aria-hidden="true" stroke="currentcolor" fill="currentcolor" class="astro-patnjmll" data-astro-cid-patnjmll> <g data-astro-cid-patnjmll><rect width="256" height="256" fill="none"/><polyline points="96 48 176 128 96 208" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/></g>  </svg>  <strong>BS:</strong> <span>Civil Engineering</span></li> </ul> <ul class="list-right"> <li><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 256 256" aria-hidden="true" stroke="currentcolor" fill="currentcolor" class="astro-patnjmll" data-astro-cid-patnjmll> <g data-astro-cid-patnjmll><rect width="256" height="256" fill="none"/><polyline points="96 48 176 128 96 208" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/></g>  </svg>  <strong>City:</strong> <span>Tucson, AZ, USA</span></li> <li><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 256 256" aria-hidden="true" stroke="currentcolor" fill="currentcolor" class="astro-patnjmll" data-astro-cid-patnjmll> <g data-astro-cid-patnjmll><rect width="256" height="256" fill="none"/><polyline points="96 48 176 128 96 208" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/></g>  </svg>  <strong>Email:</strong> <span>steslowj@gmail.com</span></li> </ul> </div> </div> </div> <div class="about-post"> <p>
+Outside of work and school, I enjoy (indoor!) rock climbing, cycling, hiking, eating good food, and relaxing with friends for board games.
+</p> </div> <div class="about-row"> <div class="counter"> <div class="box"> <img src="../../assets/tank.png" class="img" alt=""> <h3>my dog Tank !</h3> </div> <div class="box"> <img src="../../assets/computer.png" class="img" alt=""> <h3>web dev &amp; GIS coding</h3> </div> <div class="box"> <img src="../../assets/bike.png" class="img" alt=""> <h3>cycling</h3> </div> <div class="box"> <img src="../../assets/latte.png" class="img" alt=""> <h3>good food &amp; drink</h3> </div> <div class="box"> <img src="../../assets/dragon.png" class="img" alt=""> <h3>games: video, board, &amp; TTRPG</h3> </div> </div> </div> </section>  </div> <footer data-astro-cid-sz7xmlte> <div class="group" data-astro-cid-sz7xmlte> <p data-astro-cid-sz7xmlte>
+Designed with
+<a href="https://astro.build/" data-astro-cid-sz7xmlte> Astro </a> <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 256 256" aria-hidden="true" stroke="currentcolor" fill="currentcolor" style="--size:1.2em" class="astro-patnjmll" data-astro-cid-patnjmll> <g data-astro-cid-patnjmll><path fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" d="M94.1 184.6c-11.4 33.9-56.6 33.9-56.6 33.9s0-45.2 33.9-56.6m124.5-56.5L128 173.3 82.7 128l67.9-67.9C176.3 34.4 202 34.7 213 36.3a7.8 7.8 0 0 1 6.7 6.7c1.6 11 1.9 36.7-23.8 62.4Z"/><path fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" d="M184.6 116.7v64.6a8 8 0 0 1-2.4 5.6l-32.3 32.4a8 8 0 0 1-13.5-4.1l-8.4-41.9m11.3-101.9H74.7a8 8 0 0 0-5.6 2.4l-32.4 32.3a8 8 0 0 0 4.1 13.5l41.9 8.4"/></g>  </svg>  </p> <p data-astro-cid-sz7xmlte>&copy; 2024 Jessica Steslow</p> </div> <p class="socials" data-astro-cid-sz7xmlte> <a href="mailto:steslowj@gmail.com" data-astro-cid-sz7xmlte> steslowj@gmail.com</a> <a href="https://github.com/steslowj" data-astro-cid-sz7xmlte> GitHub</a> </p> </footer>  <!-- jquery cdn link --> <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous"></script> <!-- custom js file link -->  </body> </html>
