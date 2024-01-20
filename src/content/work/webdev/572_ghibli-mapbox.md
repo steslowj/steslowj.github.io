@@ -11,6 +11,7 @@ tags:
   - Geog572
   - Mapbox
   - Web
+  - Live
 ---
 
 This project is my Lab 3 for UW-Madison Geog 572 Graphic Design in Cartography Class.

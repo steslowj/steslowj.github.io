@@ -1,5 +1,5 @@
 ---
-title: Map of Venice with ESRI JavaScript API
+title: Map of Venice with ArcGIS JS
 publishDate: 2023-09-25 00:00:00
 img: /assets/preview/576_venice.png
 img_alt: A map of Venice, Italy with sestieri (neighborhoods) in different colors and points of interest labeled.
@@ -10,6 +10,7 @@ tags:
   - Geog576
   - Web
   - ArcGIS JS
+  - Live
 liveLink: https://steslowj.github.io/geog576_lab2_venice-arcgis-js/
 ---
 
