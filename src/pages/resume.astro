@@ -1,0 +1,138 @@
+---
+import '../styles/styles.css';
+
+// Layout import — provides basic page elements: <head>, <nav>, <footer> etc.
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+---
+
+<BaseLayout
+  title="My Resume | Jessica Steslow"
+  description="Jessica Steslow's resume">
+
+  <section id="resume" class="resume">
+    <div class="container">
+  
+      <h2 class="heading">my <span class="accent">resume</span></h2>
+      <p>Here I have included a brief resume. See my page on <a href="https://www.linkedin.com/in/jessicasteslow/" target="_blank">LinkedIn</a> for more information!</p>
+  
+      <div class="row">
+        <div class="col">
+          <h3 class="resume-title">Summary</h3>
+          <div class="resume-item">
+            <h4>Jessica Steslow</h4>
+            <p><em>Data-driven water resources engineer with 6+ years of civil engineering experience and an enthusiasm for GIS.</em></p>
+            <ul>
+              <li>Tuczon, AZ, USA</li>
+              <li>steslowj@gmail.com</li>
+            </ul>
+          </div>
+  
+          <h3 class="resume-title">Education</h3>
+          <div class="resume-item">
+            <h4>MS: Online GIS Development</h4>
+            <h5><span class="date">June 2022 - May 2024</span><em class="gpa">GPA: 4.00</em></h5>
+            <p><em>University of Wisconsin; Madison, WI, USA</em></p>
+            <p>I am currently enrolled in the UW-Mad online program "Geographic Information Systems & Cartography - Online GIS Development." This program has classes on cartography, coding, databases, web design, and custom GIS applications. </p>
+          </div>
+          <div class="resume-item">
+            <h4>BS: Civil &amp; Environmental Engineering</h4>
+            <h5><span class="date">Aug 2013 - Dec 2015</span><em class="gpa">GPA: 3.56</em></h5>
+            <p><em>University of Illinois; Urbana-Champaign, IL, USA</em></p>
+            <p>Classes included core civil engineering with a focus in environmental engineering: water resources, water and wastewater treatment, global resources economics, and life-cycle analysis. Completed with an AS from the College of DuPage, Illinois. </p>
+          </div>
+          <div class="resume-item">
+            <h4>AS: General Engineering</h4>
+            <h5><span class="date">Aug 2011 - Aug 2013</span><em class="gpa">GPA: 3.88</em></h5>
+            <p><em>College of DuPage; Glen Ellyn, IL, USA</em></p>
+            <p>I started my college education focusing on general education with an AS. I also participated in the honors curriculum which focused on leadership and humanities classes.</p>
+          </div>
+        </div>
+        <div>
+          <h3 class="resume-title">Professional Experience</h3>
+          <div class="resume-item">
+            <h4>Water Resources Engineer</h4>
+            <h5><span class="date">May 2019 - Oct 2023</span></h5>
+            <p><em>WestLand Engineering &amp; Environmental Services, Tucson, AZ, USA</em></p>
+            <ul>
+              <li>Project Engineer on water-wastewater distribution, master planning, and hydraulic modeling projects</li>
+              <li>Performed engineering calculations for pipe flow, head losses, water demand, and cost estimates </li>
+              <li>Created professional engineering design plans and project reports</li>
+              <li>Used GIS for utility modeling, figure creation, data transfer, and spatial analysis</li>
+            </ul>
+          </div>
+          <div class="resume-item">
+            <h4>Civil Engineer</h4>
+            <h5><span class="date">Aug 2016 - Apr 2019</span></h5>
+            <p><em>U.S. Army Corps of Engineers, Rock Island, IL, USA</em></p>
+            <ul>
+              <li>Project Engineer in the Civil and Environmental Engineering Department</li>
+              <li>Assisted in habitat restoration, civil construction, and flood control projects</li>
+              <li>Coordinated with engineers and scientists for cross disciplinary 404 and 408 permit reviews</li>
+              <li>Updated and maintained a GIS database for levees in the PL84-99 program for annual inspections</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+  
+      <div class="resume-row">
+        <h3 class="resume-title">Technical Skills</h3>
+        <div class="counter">
+  
+          <div class="resume-box boxcard">
+            <h4>GIS Software</h4>
+            <ul>
+              <li>ESRI ArcGIS Pro, Online</li>
+              <li>ESRI ArcMap</li>
+              <li>GDAL &amp; OGR</li>
+            </ul>
+          </div>
+          <div class="resume-box boxcard">
+            <h4>Web-Based Mapping</h4>
+            <ul>
+              <li>ESRI JS API</li>
+              <li>Leaflet JS Library</li>
+              <li>D3 JS Library</li>
+            </ul>
+          </div>
+          <div class="resume-box boxcard">
+            <h4>Programming Languages</h4>
+            <ul>
+              <li>HTML, CSS, JS</li>
+              <li>Python</li>
+            </ul>
+          </div>
+          <div class="resume-box boxcard">
+            <h4>Web Development</h4>
+            <ul>
+              <li>Bootstrap, W3-CSS</li>
+              <li>Astro</li>
+              <li>Google API, AWS</li>
+            </ul>
+          </div>
+          <div class="resume-box boxcard">
+            <h4>Hydraulic &amp; Hydrologic Modeling</h4>
+            <ul>
+              <li>Innovyse Infowater</li>
+              <li>Innovyse Infosewer</li>
+              <li>HEC-RAS, HEC-HMS</li>
+            </ul>
+          </div>
+          <div class="resume-box boxcard">
+            <h4>Graphic Design</h4>
+            <ul>
+              <li>Adobe Illustrator</li>
+              <li>Adobe Photoshop</li>
+              <li>Figma</li>
+            </ul>
+          </div>
+  
+        </div>
+      </div>
+  
+    </div>
+  </section>
+  
+
+
+</BaseLayout>

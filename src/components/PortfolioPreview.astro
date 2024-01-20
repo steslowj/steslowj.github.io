@@ -1,0 +1,19 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+	project: CollectionEntry<'work'>;
+}
+
+const { data, slug } = Astro.props.project;
+
+---
+
+<div class={"portfolio-item " + data.tags.toString().replaceAll(","," ")}>
+  <p>{data.title}</p>
+  <div class="box boxcard">
+    <a class="card" href={`/work/${slug}`}>
+      <img src={data.img} alt={data.img_alt || ''} loading="lazy" decoding="async" />
+    </a>
+  </div>
+</div>

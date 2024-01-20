@@ -1,0 +1,50 @@
+---
+import ThemeToggle from './ThemeToggle.astro';
+
+/** Main menu items */
+const textLinks: { label: string; href: string }[] = [
+	{ label: 'home', href: '/' },
+	{ label: 'portfolio', href: '/portfolio/' },
+	{ label: 'resume', href: '/resume/' },
+];
+
+---
+<div id="sidebar">
+  <div class="user boxcard">
+    <h3 class="name">Jessica <span class="accent">Steslow</span></h3>
+    <p class="post">· maps and data ·</p>
+    <p class="post">· green engineering ·</p>
+    <img src="../../assets/lightbulb.svg" alt="a lightbulb with vines inside the glass"/>
+  </div>
+
+    <nav class="navbar boxcard">
+      <ul>
+        {
+          textLinks.map(({ label, href }) => (
+            <li>
+              <a
+                aria-current={Astro.url.pathname === href}
+                class:list={[
+                  'link',
+                  {
+                    active:
+                      Astro.url.pathname === href ||
+                      (href !== '/' && Astro.url.pathname.startsWith(href)),
+                  },
+                ]}
+                href={href}
+              >
+                {label}
+              </a> 
+            </li>
+          ))
+        }
+      </ul>
+      <div class="theme-toggle">
+        <ThemeToggle />
+      </div>
+    </nav>
+
+</div>
+
+

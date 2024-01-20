@@ -1,0 +1,143 @@
+---
+import { getCollection } from 'astro:content';
+
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PortfolioPreview from '../components/PortfolioPreview.astro';
+
+const projects = (await getCollection('work')).sort(
+	(a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf()
+);
+---
+
+<BaseLayout
+	title="My Portfolio | Jessica Steslow"
+	description="Learn about Jessica Steslow's most recent projects"
+>
+
+  <section class="portfolio" id="portfolio">
+
+    <h2 class="heading"> my <span class="accent">portfolio</span></h2>
+
+    <div id="portfolio-tag-container">
+      <div><p>Tags:</p></div>
+      <div id="filterBtnContainer"> 
+        <button type="button" class="btn selected portfolio-tag-cloud" id="all">Show All</button>
+        <button type="button" class="btn portfolio-tag-cloud" id="Web">Web Map</button>
+        <button type="button" class="btn portfolio-tag-cloud" id="Cartography">Print / Cartography</button>
+        <button type="button" class="btn portfolio-tag-cloud" id="UW-Mad">From UW-Mad</button>
+        <button type="button" class="btn portfolio-tag-cloud" id="Infographic">Infographic</button>
+        <button type="button" class="btn portfolio-tag-cloud" id="Reference">Reference Map</button>
+        <button type="button" class="btn portfolio-tag-cloud" id="Physical">Physical Features Map</button>
+        <button type="button" class="btn portfolio-tag-cloud" id="ESRI-Styles">ESRI Styles</button>
+      </div>
+    </div>
+
+    <div class="box-container">
+
+        {
+          projects.map((project) => (
+            <PortfolioPreview project={project} />
+          ))
+        }
+
+    </div>
+
+  </section>
+
+  <script>
+
+    // Code to filter portfolio cards
+    // Modified from W3 Schools tutorial for filtering elements
+
+      // Find all buttons with the `portfolio-tag-cloud` class on the page.
+      const buttons = document.querySelectorAll('button.portfolio-tag-cloud');
+
+      // astro cannot read a custom function attached as button attribute onclick
+      // so a click handler must be added via js
+      buttons.forEach((button) => {
+        button.addEventListener('click', () => {
+          console.log('Button was clicked!', button.id);
+          filterSelection(button.id);
+        });
+      });
+
+    filterSelection("all"); //shows all items on page
+
+    function filterSelection(c) {
+      var x, i;
+      x = document.getElementsByClassName("portfolio-item");
+      if (c == "all") c = "";
+      // Add the "show" class (display:grid) to the filtered elements, and remove the "show" class from the elements that are not selected
+      for (i = 0; i < x.length; i++) {
+        w3RemoveClass(x[i], "show");
+        if (x[i].className.indexOf(c) > -1) {
+          w3AddClass(x[i], "show");
+        }
+      }
+    }
+
+    // Show filtered elements
+    function w3AddClass(element, name) {
+      var i, arr1, arr2;
+      arr1 = element.className.split(" ");
+      arr2 = name.split(" ");
+      for (i = 0; i < arr2.length; i++) {
+        if (arr1.indexOf(arr2[i]) == -1) {
+          element.className += " " + arr2[i];
+        }
+      }
+    }
+
+    // Hide elements that are not selected
+    function w3RemoveClass(element, name) {
+      var i, arr1, arr2;
+      arr1 = element.className.split(" ");
+      arr2 = name.split(" ");
+      for (i = 0; i < arr2.length; i++) {
+        while (arr1.indexOf(arr2[i]) > -1) {
+          arr1.splice(arr1.indexOf(arr2[i]), 1);
+        }
+      }
+      element.className = arr1.join(" ");
+    }
+
+    // Add active (selected) class to the current control button (highlight it)
+    var btnContainer = document.getElementById("filterBtnContainer");
+    var btns = btnContainer.getElementsByClassName("btn");
+    for (var i = 0; i < btns.length; i++) {
+      btns[i].addEventListener("click", function() {
+        var current = document.getElementsByClassName("selected");
+        current[0].className = current[0].className.replace(" selected", "");
+        this.className += " selected";
+      });
+    }
+
+  </script>
+
+</BaseLayout>
+
+
+<style>
+  .portfolio-tag-cloud {
+  text-decoration: 1px solid underline transparent;
+  text-underline-offset: 0.25em;
+  transition: text-decoration-color var(--theme-transition);
+}
+
+.portfolio-tag-cloud:hover,
+.portfolio-tag-cloud:focus {
+  text-decoration-color: currentColor;
+}
+
+.btn.selected {
+  background-color: var(--theme-accent1);
+  color: var(--theme-bg);
+  text-decoration-color: transparent;
+}
+
+.btn:active {
+  background-color: var(--theme-accent1);
+  color: var(--theme-bg);
+  border: var(--theme-accent1) 1px solid;
+}
+</style>
