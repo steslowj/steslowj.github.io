@@ -15,3 +15,5 @@ tags:
 ---
 
 This project is my Lab 2 for UW-Madison Geog 572 Graphic Design in Cartography Class.
+
+See the full size infographic <a href="/assets/572_houseplants-fullsize.png" target="_blank">here in a new page</a>.
