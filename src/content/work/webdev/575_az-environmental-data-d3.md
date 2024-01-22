@@ -1,16 +1,14 @@
 ---
-title: Data Vis with D3 JS
+title: AZ Data Viz Website
 publishDate: 2023-08-14 00:00:00
 img: /assets/preview/575_az-d3.png
 img_alt: A map of counties in Arizona, USA adjacent to a bar graph of environmental parameters.
 description: |
   Learning linked visualizations with D3 JS with data per county in Arizona.
 tags:
-  - UW-Mad
-  - Geog575
+  - UW-Mad Geog575
   - Web
-  - D3 JS
-  - Live
+  - D3-JS
 liveLink: https://steslowj.github.io/geog575_az-data-d3/
 ---
 

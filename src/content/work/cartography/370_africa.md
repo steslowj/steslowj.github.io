@@ -8,8 +8,7 @@ description: |
 tags:
   - Cartography
   - Physical
-  - UW-Mad
-  - Geog370
+  - UW-Mad Geog370
   - ArcGIS-Pro
   - Illustrator
 ---

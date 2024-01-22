@@ -1,16 +1,15 @@
 ---
-title: The Dragon Map with ArcGIS JS
+title: The Dragon Map & Database
 publishDate: 2023-10-31 00:00:00
 img: /assets/preview/576_dragon.png
 img_alt: A web app with a menu bar on the left and a large map on the right showing icons of dragons and lizards.
 description: |
   Learning ESRI's ArcGIS JavaScript API with a dragon database.
 tags:
-  - UW-Mad
-  - Geog576
+  - UW-Mad Geog576
   - Web
-  - ArcGIS JS
-  - Live
+  - ArcGIS-JS
+  - Survey 123
 liveLink: https://steslowj.github.io/geog576_midterm-dragonmap/
 ---
 

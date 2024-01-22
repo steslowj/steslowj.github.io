@@ -1,17 +1,15 @@
 ---
-title: Mississippi HydroSheds Leaflet and D3
+title: Mississippi HydroSheds Web App
 publishDate: 2023-08-27 00:00:00
 img: /assets/preview/575_mississippi.png
 img_alt: A web application that shows watersheds of the Mississippi River in the United States with arrows and toggles to change the subdivision levels and watersheds colored per environmental parameter.
 description: |
   A web application to explore the various levels of watersheds of the great Mississippi River.
 tags:
-  - UW-Mad
-  - Geog575
+  - UW-Mad Geog575
   - Web
-  - Leaflet JS
-  - D3 JS
-  - Live
+  - Leaflet-JS
+  - D3-JS
 liveLink: https://steslowj.github.io/geog575_final-mississippi-hydrosheds/
 ---
 

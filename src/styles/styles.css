@@ -71,7 +71,7 @@ body {
 }
 
 section {
-  min-height: 90vh;
+  min-height: 100vh;
   padding: 1rem;
 }
 
@@ -418,7 +418,7 @@ h5 {
   line-height: 18px;
   font-size: var(--text-lg);
   font-weight: 600;
-  margin-bottom: 12px;
+  margin-bottom: 14px;
 }
 
 .resume .resume-item h5 {
@@ -505,22 +505,43 @@ h5 {
 
 .portfolio .box-container {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: space-around;
+  width: 100%;
   flex-wrap: wrap;
   padding: 2rem 0;
   padding: 0;
 }
 
 .portfolio .box-container .portfolio-item {
-  display: none; /*default display, addtnl display handled by filter.js*/
-  justify-items:center;
+  display: none; /*default display, addtnl display handled by portfolio.astro js*/
+  grid-template-columns: auto auto;
+  width:100%;
+  border-top: 1px solid var(--theme-text);
+}
+
+.portfolio .box-container .portfolio-item:first-of-type {
+  border-top: none;
+}
+
+.portfolio .box-container .portfolio-item .portfolio-item-left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.portfolio .box-container .portfolio-item .portfolio-item-right {
+  width: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
 }
 .portfolio .box-container .portfolio-item p{
   text-align: center;
   margin-top: 2rem;
-  max-width: 32ch;
-  font-size: calc(var(--text-base)*0.9);
+  max-width: 30ch;
 }
 
 .portfolio .box-container .box {
@@ -537,6 +558,13 @@ h5 {
   transition: all 0.2s ease-in-out;
 }
 
+.portfolio .tag-list {
+  color: var(--theme-text);
+  font: var(--text-base);
+  list-style-position: inside;
+  padding: 1rem 0 1rem 1rem;
+
+}
 /*
 .portfolio .box-container .box:hover img{
   transform: scale(1.2);

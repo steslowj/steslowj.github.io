@@ -19,13 +19,11 @@ const projects = (await getCollection('work')).sort(
     <h2 class="heading"> my <span class="accent">portfolio</span></h2>
 
     <div id="portfolio-tag-container">
-      <div><p>Tags:</p></div>
+      <div><p>Filter by Tag:</p></div>
       <div id="filterBtnContainer"> 
         <button type="button" class="btn selected portfolio-tag-cloud" id="all">Show All</button>
         <button type="button" class="btn portfolio-tag-cloud" id="Web">Web Map</button>
-        <button type="button" class="btn portfolio-tag-cloud" id="Live">Live Web Map</button>
         <button type="button" class="btn portfolio-tag-cloud" id="Cartography">Print / Cartography</button>
-        <button type="button" class="btn portfolio-tag-cloud" id="UW-Mad">From UW-Mad</button>
         <button type="button" class="btn portfolio-tag-cloud" id="Infographic">Infographic</button>
         <button type="button" class="btn portfolio-tag-cloud" id="Reference">Reference Map</button>
         <button type="button" class="btn portfolio-tag-cloud" id="Physical">Physical Features Map</button>

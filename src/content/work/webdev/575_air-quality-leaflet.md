@@ -1,16 +1,14 @@
 ---
-title: Air Quality with Leaflet JS
+title: Air Quality Index Exploration Website
 publishDate: 2023-07-10 00:00:00
 img: /assets/preview/575_airquality_leaflet.png
 img_alt: A website showing the United States with colored points over cities that represent air quality values.
 description: |
   Learning JavaScript with the Leaflet JS library while exploring how air quality data changes over time.
 tags:
-  - UW-Mad
-  - Geog575
+  - UW-Mad Geog575
   - Web
-  - Leaflet JS
-  - Live
+  - Leaflet-JS
 liveLink: https://steslowj.github.io/geog575_air-quality-leaflet/
 ---
 

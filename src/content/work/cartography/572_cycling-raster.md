@@ -8,8 +8,7 @@ description: |
 tags:
   - Cartography
   - Infographic
-  - UW-Mad
-  - Geog572
+  - UW-Mad Geog572
   - ArcGIS-Pro
   - Illustrator
   - Photoshop
