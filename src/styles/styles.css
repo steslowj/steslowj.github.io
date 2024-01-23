@@ -257,7 +257,7 @@ h5 {
   display: flex;
   justify-content: center;
   flex-flow: column;
-  padding: 0 20rem 0 6rem;
+  padding: 0 10rem 0 6rem;
 }
 
 .hero p {
@@ -274,7 +274,7 @@ h5 {
 }
 
 .hero-icon {
-  padding: 0.5rem;
+  padding: 0 0.5rem;
   display: inline-flex;
   flex-direction: row;
   align-items:flex-end;
@@ -736,5 +736,4 @@ h5 {
   .about .about-container {
     grid-template-columns: 100%;
   }
-
 }

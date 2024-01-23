@@ -4,10 +4,9 @@ import '../styles/styles.css';
 // Layout import — provides basic page elements: <head>, <nav>, <footer> etc.
 import BaseLayout from '../layouts/BaseLayout.astro';
 
-
 import Icon from '../components/Icon.astro';
 import About from '../components/About.astro';
-import Globe from '../components/Globe.astro';
+
 ---
 
 <BaseLayout>
@@ -17,20 +16,59 @@ import Globe from '../components/Globe.astro';
     <h3>Hi there !</h3>
     <h1>I'm <span class="accent">Jessica Steslow</span></h1>
     <p>I'm a water-focused engineer with a love of digital cartography <Icon icon="arrow-right" /> GIS (Geographic Information Systems). This is my personal website and portfolio. Please take a look around! </p>
-    <p class="hero-icon-row">Find me on:  
-      <span class="hero-icon">
-        <a href="https://www.linkedin.com/in/jessicasteslow/" target="_blank">
-          <Icon icon="linkedin-logo" /></a></span>
-      <span class="hero-icon">
-        <a href="https://github.com/steslowj" target="_blank">
-          <Icon icon="github-logo" /></a></span>
-      <span class="hero-icon">
-        <a href="mailto:steslowj@gmail.com" target="_blank">
-          <Icon icon="envelope" /></a></span>
-    </p>
-  </section>
+    <div class="globe-container">
+      <div class="left-of-globe">
+        <p class="hero-icon-row">Find me on:  
+          <span class="hero-icon">
+            <a href="https://www.linkedin.com/in/jessicasteslow/" target="_blank">
+              <Icon icon="linkedin-logo" /></a></span>
+          <span class="hero-icon">
+            <a href="https://github.com/steslowj" target="_blank">
+              <Icon icon="github-logo" /></a></span>
+          <span class="hero-icon">
+            <a href="mailto:steslowj@gmail.com" target="_blank">
+              <Icon icon="envelope" /></a></span>
+        </p>
 
+        <p>I enjoy the combination of data vis, cartography, and coding.</p>
+      </div>
+      <iframe width="400" height="450" frameborder="3"
+          src="https://observablehq.com/embed/fd7a5dc192766bc0@250?cells=chart"></iframe>
+    </div>
+  
+    
+    <!-- incorporating d3 javascript within astro is a work in progress
+      
+      <div id="globe" style="border: 2px solid red;">
+        <canvas width="600" height="400"></canvas>
+      </div>
+      
+      <script src='https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js' integrity='sha512-M7nHCiNUOwFt6Us3r8alutZLm9qMt4s9951uo8jqO4UwJ1hziseL6O3ndFyigx6+LREfZqnhHxYjKRJ8ZQ69DQ==' crossorigin='anonymous'></script>
+      
+      <script src='https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.2/topojson.min.js' integrity='sha512-4UKI/XKm3xrvJ6pZS5oTRvIQGIzZFoXR71rRBb1y2N+PbwAsKa5tPl2J6WvbEvwN3TxQCm8hMzsl/pO+82iRlg==' crossorigin='anonymous'></script>
+      
+      <script src="https://cdn.jsdelivr.net/npm/versor@0.2"></script>
+
+      <script src="../js/globe.js"></script> -->
+    </section>
   
   <About />
 
 </BaseLayout>
+
+<style>
+  .hero .globe-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  .hero .left-of-globe {
+    min-width: 36ch;
+    max-width: 50ch;
+  }
+  .hero iframe {
+    flex-grow: 0;
+    flex-shrink: 0;
+  }
+
+</style>

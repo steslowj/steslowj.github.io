@@ -1,8 +1,12 @@
-import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
+import * as d3 from '../js/d3.v7.js';
+console.log("globe.js");
 
 //wrap everything in an anonymous function which is immediately invoked
 //also prevents items in this JS file being in global scope
 window.onload = function(){
+
+  let landFilePath = "../data/land-110m.json",
+      countriesFilePath = "../../data/countries-110m.json";
 
   let geojson = {}
 
@@ -52,7 +56,7 @@ window.onload = function(){
 
 
   // REQUEST DATA
-  var promises = [d3.json("../data/land-110m.json"), d3.json("../data/countries-110m.json")];
+  var promises = [d3.json(landFilePath), d3.json(countriesFilePath)];
   Promise.all(promises).then(callback);
 
   function callback(data){
