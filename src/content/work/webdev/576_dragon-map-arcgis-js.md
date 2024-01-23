@@ -9,7 +9,7 @@ tags:
   - UW-Mad Geog576
   - Web
   - ArcGIS-JS
-  - Survey 123
+  - Survey-123
 liveLink: https://steslowj.github.io/geog576_midterm-dragonmap/
 ---
 

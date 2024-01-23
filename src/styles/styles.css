@@ -507,17 +507,15 @@ h5 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-around;
   width: 100%;
   flex-wrap: wrap;
-  padding: 2rem 0;
   padding: 0;
 }
 
 .portfolio .box-container .portfolio-item {
   display: none; /*default display, addtnl display handled by portfolio.astro js*/
-  grid-template-columns: auto auto;
-  width:100%;
+  grid-template-columns: 40% 60%;
+  width: 100%;
   border-top: 1px solid var(--theme-text);
 }
 
@@ -537,13 +535,17 @@ h5 {
   flex-direction: column;
   justify-content: center;
   height: 100%;
+  font-size: calc(var(--text-sm)*1.1);
 }
-.portfolio .box-container .portfolio-item p{
+.portfolio .box-container .portfolio-item .portfolio-item-title{
   text-align: center;
   margin-top: 2rem;
   max-width: 30ch;
 }
-
+.portfolio .box-container .portfolio-item .portfolio-item-description{
+  max-width: 65ch;
+  padding: 1rem 0 0 1rem;
+}
 .portfolio .box-container .box {
   width: 18rem;
   margin: 0.5rem 2rem 2rem 2rem;

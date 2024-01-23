@@ -11,7 +11,7 @@ const { data, slug } = Astro.props.project;
 
 <div class={"portfolio-item " + data.tags.toString().replaceAll(","," ")}>
   <div class="portfolio-item-left">
-    <p>{data.title}</p>
+    <p class="portfolio-item-title">{data.title}</p>
     <div class="box boxcard">
       <a class="card" href={`/work/${slug}`}>
         <img src={data.img} alt={data.img_alt || ''} loading="lazy" decoding="async" />
@@ -19,6 +19,7 @@ const { data, slug } = Astro.props.project;
     </div>
   </div>
   <div class="portfolio-item-right">
+    <p class="portfolio-item-description">{data.description}</p>
     <ul class="tag-list">
       <li>{data.publishDate.toString().slice(4,7) + " " + data.publishDate.toString().slice(11,16)}</li>
       { data.tags.map(i => (<li>{i}</li>)) }
