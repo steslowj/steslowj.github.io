@@ -516,11 +516,7 @@ h5 {
   display: none; /*default display, addtnl display handled by portfolio.astro js*/
   grid-template-columns: 40% 60%;
   width: 100%;
-  border-top: 1px solid var(--theme-text);
-}
-
-.portfolio .box-container .portfolio-item:first-of-type {
-  border-top: none;
+  border-bottom: 1px solid var(--theme-text);
 }
 
 .portfolio .box-container .portfolio-item .portfolio-item-left {

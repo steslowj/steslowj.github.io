@@ -1,5 +1,5 @@
 ---
-title: The Dragon Map & Database
+title: The Dragon Map Website
 publishDate: 2023-10-31 00:00:00
 img: /assets/preview/576_dragon.png
 img_alt: A web app with a menu bar on the left and a large map on the right showing icons of dragons and lizards.
@@ -9,6 +9,7 @@ tags:
   - UW-Mad Geog576
   - Web
   - ArcGIS-JS
+  - ESRI-Calcite-Components
   - Survey-123
 liveLink: https://steslowj.github.io/geog576_midterm-dragonmap/
 ---

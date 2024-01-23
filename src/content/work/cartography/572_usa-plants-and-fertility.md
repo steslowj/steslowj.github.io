@@ -1,5 +1,5 @@
 ---
-title: Houseplants & Fertility Rate (Preview)
+title: Houseplants & Fertility Rate Infographic (Preview)
 publishDate: 2023-03-20 00:00:00
 img: /assets/preview/572_houseplant_bivariate.png
 img_alt: A two-variable choropleth map of the United States with states colored by fertility rate and number of houseplants bought.

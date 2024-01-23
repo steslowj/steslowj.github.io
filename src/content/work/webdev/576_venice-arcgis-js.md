@@ -1,5 +1,5 @@
 ---
-title: Map of Venice
+title: Map of Venice Website
 publishDate: 2023-09-25 00:00:00
 img: /assets/preview/576_venice.png
 img_alt: A map of Venice, Italy with sestieri (neighborhoods) in different colors and points of interest labeled.
