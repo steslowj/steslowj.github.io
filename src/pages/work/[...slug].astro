@@ -87,9 +87,10 @@ const { Content } = await entry.render();
 
 .published, .live-link {
   margin: 0.5rem 0;
-  font-size: calc(var(--text-sm)*1.1);
   text-overflow: ellipsis;
 }
+
+.live-link a {color: var(--theme-accent1); text-decoration: none;}
 
 .tags {
   display: flex;
@@ -143,15 +144,19 @@ const { Content } = await entry.render();
   color: var(--theme-accent1);
 }
 
-.back-link,
+.back-link, .live-link a,
 .content :global(a) {
   text-decoration: 1px solid underline transparent;
   text-underline-offset: 0.25em;
   transition: text-decoration-color var(--theme-transition);
 }
 
+.content :global(a) { color: var(--theme-accent1);}
+
 .back-link:hover,
 .back-link:focus,
+.live-link a:hover,
+.live-link a:focus,
 .content :global(a:hover),
 .content :global(a:focus) {
   text-decoration-color: currentColor;

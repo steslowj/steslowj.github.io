@@ -24,7 +24,8 @@
 	--text-5xl: 3.4rem;
 
 	/* Fonts */
-	--font-body: "IBM Plex Mono", Calibri, 'Trebuchet MS', sans-serif, system-ui;
+  /*"IBM Plex Mono" switched for "Nunito"*/
+	--font-body: "Nunito", Calibri, 'Trebuchet MS', sans-serif, system-ui;
 
 	/* Transitions */
 	--theme-transition: 0.2s ease-in-out;
@@ -93,6 +94,7 @@ section {
   padding: 6px 12px;
   margin: 4px 1px;
   font-size: calc(var(--text-sm)*1.1);
+  font-family: var(--font-body);
 }
 
 .btn:hover {
@@ -210,7 +212,7 @@ h5 {
 #sidebar .navbar ul li a {
   display: block;
   padding: 0.6rem;
-  margin: 0.8rem auto;
+  margin: 0.6rem auto;
   background: var(--theme-bg);
   font-size: var(--text-base);
   border-radius: 4rem;
@@ -531,7 +533,6 @@ h5 {
   flex-direction: column;
   justify-content: center;
   height: 100%;
-  font-size: calc(var(--text-sm)*1.1);
 }
 .portfolio .box-container .portfolio-item .portfolio-item-title{
   text-align: center;

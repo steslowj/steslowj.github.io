@@ -19,9 +19,12 @@ const { data, slug } = Astro.props.project;
     </div>
   </div>
   <div class="portfolio-item-right">
-    <p class="portfolio-item-description">{data.description}</p>
+    <p class="portfolio-item-description">{
+      data.description + 
+      data.publishDate.toString().slice(4,7) + " " + 
+      data.publishDate.toString().slice(11,15) + "."
+      }</p>
     <ul class="tag-list">
-      <li>{data.publishDate.toString().slice(4,7) + " " + data.publishDate.toString().slice(11,16)}</li>
       { data.tags.map(i => (<li>{i}</li>)) }
     </ul>
   </div>

@@ -6,6 +6,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 import Icon from '../components/Icon.astro';
 import About from '../components/About.astro';
+import { HelloAstro } from "hello-astro";
 
 ---
 
@@ -13,7 +14,8 @@ import About from '../components/About.astro';
 
   <section class="hero" id="hero">
 
-    <h3>Hi there !</h3>
+    <h2 class="sr-only">Hi there !</h2>
+    <h3><HelloAstro /> <Icon icon='hand-waving' /></h3>
     <h1>I'm <span class="accent">Jessica Steslow</span></h1>
     <p>I'm a water-focused engineer with a love of digital cartography <Icon icon="arrow-right" /> GIS (Geographic Information Systems). This is my personal website and portfolio. Please take a look around! </p>
     <div class="globe-container">
