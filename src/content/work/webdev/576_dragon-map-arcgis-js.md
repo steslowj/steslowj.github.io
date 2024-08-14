@@ -19,3 +19,5 @@ This project is my midterm for UW-Madison Geog 576 Class. My hope for this proje
 The user-interface is built with ESRI's calcite component system.
 
 The code is available on github, <a href="https://github.com/steslowj/geog576_midterm-dragonmap" target="_blank">https://github.com/steslowj/geog576_midterm-dragonmap</a>.
+
+Skills: JavaScript coding, Visual Studio Code, ESRI ArcGIS Maps SDK for JavaScript, calcite components, Survey 123, front-end web design, UI/UX design

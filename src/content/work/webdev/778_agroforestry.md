@@ -28,3 +28,5 @@ And I used the watershed layer to create two ArcGIS Online Web Maps, styled usin
 
 
 Additionally, I have a demonstration available that walks through my website, <a href="https://www.youtube.com/watch?v=yn5mo7OvPQg" target="_blank"><br>Agroforestry Project Demonstration</a>.
+
+Skills: ESRI ArcGIS Online Suite (hosting layers, creating web maps, nesting web maps into widgets, StoryMaps, Experience Builder), front-end web design, UI/UX design, environmental data analysis, data presentation, working with a company/freelance work

@@ -13,3 +13,5 @@ tags:
 ---
 
 This project is my Lab 1 for UW-Madison Geog 370 Cartography Class. The assignment was to create a simple reference map of a U.S. State like you might find in a tourist brochure. I took inspiration from the lovely Arizona license plate to style my reference map of Arizona. This project was designed, processed, and finalized in ESRI ArcGIS Pro.
+
+Skills: ESRI ArcGIS Pro, cartographic design

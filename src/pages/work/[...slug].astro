@@ -35,7 +35,7 @@ const { Content } = await entry.render();
             <p class="live-link"> 
               {entry.data.liveLink && <span>Hosted live at: </span> 
                 <a href={entry.data.liveLink} target="_blank">
-                  {entry.data.liveLink}</a> || ' '}</p>
+                  {entry.data.liveLink.split("?")[0]}</a> || ' '}</p>
             <ul class="tags">
               Tagged:
               {entry.data.tags.map((t) => <li>{t}</li>)}

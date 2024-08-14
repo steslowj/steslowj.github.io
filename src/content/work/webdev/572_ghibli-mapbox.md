@@ -12,4 +12,6 @@ tags:
   - Web
 ---
 
-This project is my Lab 3 for UW-Madison Geog 572 Graphic Design in Cartography Class.
+This project is my Lab 3 for UW-Madison Geog 572 Graphic Design in Cartography Class. Our assignment was to create a theme for MapBox to embody a movie genre and I tried to design based of the colorful movies from Studio Ghibli. The oceans are saturated teals, terrain is bright green to warm oranges, and the font is storybook-like. I also included some geo-points that connect real-world location that inspired different scenery/settings of Ghibli movies.
+
+Skills: Mapbox code, web design, UI-design, fonts, colors, style

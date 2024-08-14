@@ -18,3 +18,5 @@ This project is my Final Project for my UW-Madison Geog 575 Interactive Cartogra
 I think the toggles between watersheds worked out excellently - it is so interesting to see how the data changes as the subdivision levels change as well. If I had more time, I would tweak how the graph displays data.
 
 The code is available on github, <a href="https://github.com/steslowj/geog575_final-mississippi-hydrosheds" target="_blank">https://github.com/steslowj/geog575_final-mississippi-hydrosheds</a>.
+
+Skills: JavaScript coding, Visual Studio Code, Leaflet coding, D3 coding, working with large datasets, data presentation, visualization, color design, front-end web design, working in a team

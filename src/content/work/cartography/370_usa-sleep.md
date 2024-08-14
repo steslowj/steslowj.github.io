@@ -13,4 +13,7 @@ tags:
   - Illustrator
 ---
 
-This project is my Lab 3 for UW-Madison Geog 370 Cartography Class.
+This project is my Lab 3 for UW-Madison Geog 370 Cartography Class. 
+
+
+Skills: ESRI ArcGIS Pro, Adobe Illustrator, cartographic design, gathering data, data presentation, infographic design

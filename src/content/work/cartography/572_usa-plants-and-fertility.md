@@ -13,6 +13,8 @@ tags:
   - Illustrator
 ---
 
-This project is my Lab 2 for UW-Madison Geog 572 Graphic Design in Cartography Class.
+This project is my Lab 2 for UW-Madison Geog 572 Graphic Design in Cartography Class. The assignment was to greate an infographic with some spatial/map component. I'm proud of my illustrative work on this one, but I gave myself more work by including as much statistical information as I did. The choropleth map and bivariate analysis is where the bulk of the assignment was.
 
-See the full size infographic <a href="/assets/572_houseplants-fullsize.png" target="_blank">here in a new page</a>.
+See the full size infographic <a href="/assets/572_houseplants-fullsize.png" target="_blank">here in a new page</a>
+
+Skills: ESRI ArcGIS Pro, Adobe Illustrator, cartographic design, gathering data, data presentation, infographic design

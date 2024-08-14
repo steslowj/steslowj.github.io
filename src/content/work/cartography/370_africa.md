@@ -14,3 +14,5 @@ tags:
 ---
 
 This project is my Lab 2 for UW-Madison Geog 370 Cartography Class. I had to balance the need to clearly show terrain type with the size and readibility of the labels. And there are many, many labels.
+
+Skills: ESRI ArcGIS Pro, Adobe Illustrator, cartographic design

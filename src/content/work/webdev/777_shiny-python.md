@@ -20,3 +20,5 @@ One of the goals I wanted for my application was to use open source options only
 
 
 The code is available on github, <a href="https://github.com/steslowj/geog777_proj1/" target="_blank">https://github.com/steslowj/geog777_proj1/</a>.
+
+Skills: Python coding, Shiny for Python, Visual Studio Code, statistical analysis, front-end web design, UI/UX design

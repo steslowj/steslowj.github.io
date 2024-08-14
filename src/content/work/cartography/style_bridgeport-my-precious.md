@@ -11,4 +11,6 @@ tags:
   - ESRI-Styles
 ---
 
-For fun
+A project I did to explore ESRI styles.
+
+Skills: ESRI ArcGIS Pro, cartographic design
