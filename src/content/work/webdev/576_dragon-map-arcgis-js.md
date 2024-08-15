@@ -4,7 +4,7 @@ publishDate: 2023-10-31 00:00:00
 img: /assets/preview/576_dragon.png
 img_alt: A web app with a menu bar on the left and a large map on the right showing icons of dragons and lizards.
 description: |
-  Learning ESRI's ArcGIS JavaScript API with a dragon database.
+  Learning ESRI's ArcGIS Maps SDK for JavaScript with a dragon database.
 tags:
   - UW-Mad Geog576
   - Web

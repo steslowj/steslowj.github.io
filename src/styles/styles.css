@@ -239,6 +239,7 @@ h5 {
 #page, .baselayout-content {
   margin-left: calc(5vw + 28rem);
   width: 75rem;
+  /*margin: auto;*/
 }
 
 .boxcard {
@@ -585,6 +586,15 @@ h5 {
 }
 
 /* media queries */
+
+/* for very large screens */
+@media (min-width: 2400px){
+  #page, .baselayout-content {
+    margin: auto;
+  }
+}
+
+/* for progressively smaller screens */
 @media (max-width:1700px) {
 
   .hero {
