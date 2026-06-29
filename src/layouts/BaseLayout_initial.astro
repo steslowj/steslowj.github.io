@@ -10,9 +10,6 @@ import '@fontsource/inter/700.css'
 import '@fontsource/inter/800.css'
 import '@fontsource/jetbrains-mono/400.css'
 import '@fontsource/jetbrains-mono/500.css'
-import '@fontsource/kalam/300.css'
-import '@fontsource/kalam/400.css'
-import '@fontsource/kalam/700.css'
 import '../styles/global.css'
 
 const themeLightKey = (
@@ -111,6 +108,23 @@ const jsonLd = {
 
     <!-- General Meta Tags -->
     <title>{title} | {SITE.title}</title>
+    <meta name="title" content={`${title} | ${SITE.title}`} />
+    <meta name="description" content={description} />
+    <meta name="author" content={SITE.author} />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content={ogType} />
+    <meta property="og:url" content={Astro.url} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={new URL(ogImage, Astro.url)} />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={Astro.url} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={new URL(ogImage, Astro.url)} />
 
     <!-- Structured Data (JSON-LD) -->
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
@@ -118,6 +132,53 @@ const jsonLd = {
     <ClientRouter />
     <!-- https://docs.astro.build/en/guides/view-transitions/#differences-between-browser-native-view-transitions-and-astros-clientrouter- -->
 
+    <!-- i don't care about analytics, no need to set listeners for this -->
+    <!-- {
+            (ANALYTICS.umami.websiteId || ANALYTICS.ga4Id) && (
+                <script is:inline define:vars={{
+                    umamiId: ANALYTICS.umami.websiteId,
+                    umamiSrc: ANALYTICS.umami.src,
+                    ga4Id: ANALYTICS.ga4Id
+                }}>
+                    let analyticsLoaded = false;
+                    const loadAnalytics = () => {
+                        if (analyticsLoaded) return;
+                        analyticsLoaded = true;
+
+                        if (umamiId && umamiSrc) {
+                            const script = document.createElement('script');
+                            script.src = umamiSrc;
+                            script.defer = true;
+                            script.setAttribute('data-website-id', umamiId);
+                            document.head.appendChild(script);
+                        }
+
+                        if (ga4Id) {
+                            const script1 = document.createElement('script');
+                            script1.src = 'https://www.googletagmanager.com/gtag/js?id=' + ga4Id;
+                            script1.async = true;
+                            document.head.appendChild(script1);
+
+                            window.dataLayer = window.dataLayer || [];
+                            window.gtag = function(){window.dataLayer.push(arguments);}
+                            window.gtag('js', new Date());
+                            window.gtag('config', ga4Id);
+
+                            document.addEventListener('astro:page-load', () => {
+                                window.gtag('config', ga4Id, {
+                                    page_path: window.location.pathname,
+                                });
+                            });
+                        }
+                    };
+
+                    ['scroll', 'click', 'mousemove', 'touchstart', 'keydown'].forEach(event => {
+                        window.addEventListener(event, loadAnalytics, { once: true, passive: true });
+                    });
+                    setTimeout(loadAnalytics, 5000); // Fallback
+                </script>
+            )
+        } -->
     <script is:inline>
       function setTheme() {
         const theme = (() => {

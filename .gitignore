@@ -1,3 +1,5 @@
+scripts/gen-favicon/favicons/
+
 # build output
 dist/
 # generated types
@@ -19,3 +21,6 @@ pnpm-debug.log*
 
 # macOS-specific files
 .DS_Store
+
+# jetbrains setting folder
+.idea/

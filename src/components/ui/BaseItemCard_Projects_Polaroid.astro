@@ -1,0 +1,323 @@
+---
+import Tag from './Tag.astro'
+import Icon from './Icon.astro'
+import type { ImageMetadata } from 'astro'
+import { Image } from 'astro:assets'
+
+interface Props {
+  title: string
+  href: string
+  description?: string
+  date?: string
+  authors?: string
+  extraInput?: string
+  tags?: string[]
+  externalUrl?: string
+  img?: string
+  img_alt?: string
+}
+
+const {
+  title,
+  href,
+  description,
+  date,
+  authors,
+  extraInput,
+  tags,
+  externalUrl,
+  img,
+  img_alt,
+} = Astro.props
+
+const images = import.meta.glob<{ default: ImageMetadata }>(
+  '/src/assets/preview/*.{jpeg,jpg,png,gif}'
+)
+if (!images[img])
+  throw new Error(
+    `"${img}" does not exist in glob: "src/assets/*.{jpeg,jpg,png,gif}"`
+  )
+
+const shortFile = img.slice(20, -4)
+const imgNote = {
+  '778_homepage': 'working with a nonprofit!',
+  '777_desert-museum': 'interactive map viewer',
+  '777_cancer-nitrate': 'data-vis with python',
+  '576_cycle-repair': 'learning Google Cloud',
+  '576_dragon': 'deep dive into ArcGIS SDK for JS',
+  '576_venice': 'learning ArcGIS SDK for JS',
+  '575_mississippi': 'combining hydrology and GIS',
+  '575_az-d3': 'learning D3 JS',
+  '575_airquality_leaflet': 'learning Leaflet JS',
+  '572_ghibli': 'cartographic styling and mapbox',
+  'az-sketchy': 'cartographic styling and ArcGIS Pro',
+  bridgeport: 'cartographic styling and ArcGIS Pro',
+  '572_houseplant_bivariate': 'research, data analysis, and charts',
+  '572_cycling_map': 'practicing cartography',
+  '370_crochet': 'combing crochet and GIS',
+  '370_sleep': 'choropleth mappping',
+  '370_africa': 'labels, labels, labels',
+  '370_arizona': 'my first cartography project!',
+}
+const imgStyle = {
+  '778_homepage': 'object-position: 0 0',
+  '777_desert-museum': 'object-position: 0 0',
+  '777_cancer-nitrate': 'background-color: #FFF',
+  '576_cycle-repair': 'object-position: 0 0',
+  '576_dragon': 'object-position: 100% 100%',
+  '576_venice': 'object-position: 40% 100%',
+  '575_mississippi': 'object-position: 100% 100%',
+  '575_az-d3': 'object-fit: contain; background-color: rgb(22, 37, 54)',
+  '575_airquality_leaflet': 'object-position: 0 0',
+  '572_ghibli': 'object-position: 20% 0',
+  'az-sketchy': 'object-fit: contain; background-color: rgb(243, 238, 217)',
+  bridgeport: '',
+  '572_houseplant_bivariate':
+    'object-fit: contain; background-color: rgb(253, 253, 249)',
+  '572_cycling_map': 'object-position: 85% 100%',
+  '370_crochet': 'object-position: 50% 40%',
+  '370_sleep': 'object-fit: contain; background-color: rgb(236, 241, 250)',
+  '370_africa': '',
+  '370_arizona':
+    'object-fit: contain; background-color: #FFF; background-image: linear-gradient(to bottom, rgb(136, 207, 199), #FFF 18% 83%, rgb(244, 206, 141) 97.5%, rgb(100, 52, 101) 97.5%);',
+}
+---
+
+<style>
+  /* Card (list items) */
+  .card {
+    padding: 1rem 0;
+  }
+
+  .card-title {
+    width: fit-content;
+    font-size: 1.25rem;
+    font-weight: 700;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+    text-decoration: none;
+    color: var(--foreground);
+    display: block;
+    margin-bottom: 0.5rem;
+    transition: color 0.2s ease;
+  }
+
+  .card-title:hover {
+    color: var(--accent);
+    text-decoration: underline;
+  }
+
+  .card-meta {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--foreground);
+    opacity: 0.75;
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 0.75rem;
+  }
+
+  .card-desc {
+    font-size: 0.9rem;
+    color: var(--foreground);
+    opacity: 0.8;
+    line-height: 1.5;
+    display: -webkit-box;
+    line-clamp: 2;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .card-link {
+    display: inline-block;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--foreground);
+    white-space: nowrap;
+    transition: color 0.2s ease;
+  }
+
+  .card-link:hover {
+    color: var(--accent);
+    text-decoration: underline;
+  }
+
+  .card-image-container {
+    max-width: 300px;
+    break-inside: avoid;
+  }
+
+  .card-image {
+    height: 220px;
+    object-fit: cover;
+    border: 1px solid black;
+    mix-blend-mode: multiply;
+  }
+
+  .card-text {
+    font-family: 'kalam', cursive;
+  }
+
+  .card-image-container a:has(.card-image):hover {
+    color: var(--foreground) !important;
+  }
+  .vignette {
+    background-image: radial-gradient(
+      ellipse at center center,
+      rgba(0, 0, 0, 0) 50%,
+      rgba(0, 0, 0, 0.05) 70%,
+      rgba(0, 0, 0, 0.2) 90%,
+      rgb(0, 0, 0, 0.3) 100%
+    );
+    display: inline-block;
+  }
+
+  /* https://codepen.io/Wandersonsc/pen/RMerRy */
+  .polaroid {
+    background: #fff;
+    padding: 1em;
+    box-shadow: 0 0.2rem 1.2rem rgba(0, 0, 0, 0.2);
+    border: 1px solid black;
+  }
+
+  .card .card-image-container .polaroid:before {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    transition: all 0.35s;
+    height: 20%;
+    width: 47%;
+    bottom: 30px;
+  }
+
+  .card:nth-of-type(4n + 1) .card-image-container {
+    transform: scale(0.9, 0.9) rotate(1deg);
+    transition: all 0.35s;
+  }
+  .card:nth-of-type(4n + 1) .card-image-container .polaroid:before {
+    transform: rotate(1deg);
+    right: 12px;
+    box-shadow: 0 2.1em 2em rgba(0, 0, 0, 0.4);
+  }
+  .card:nth-of-type(4n + 2) .card-image-container {
+    transform: scale(0.9, 0.9) rotate(-1deg);
+    transition: all 0.35s;
+  }
+  .card:nth-of-type(4n + 2) .card-image-container .polaroid:before {
+    transform: rotate(-2deg);
+    left: 12px;
+    box-shadow: 0 2.1em 2em rgba(0, 0, 0, 0.4);
+  }
+  .card:nth-of-type(4n + 3) .card-image-container {
+    transform: scale(0.9, 0.9) rotate(-3deg);
+    transition: all 0.35s;
+  }
+  .card:nth-of-type(4n + 3) .card-image-container .polaroid:before {
+    transform: rotate(-4deg);
+    left: 12px;
+    box-shadow: 0 2.1em 2em rgba(0, 0, 0, 0.3);
+  }
+  .card:nth-of-type(4n + 4) .card-image-container {
+    transform: scale(0.9, 0.9) rotate(3deg);
+    transition: all 0.35s;
+  }
+  .card:nth-of-type(4n + 4) .card-image-container .polaroid:before {
+    transform: rotate(4deg);
+    right: 12px;
+    box-shadow: 0 2.1em 2em rgba(0, 0, 0, 0.3);
+  }
+
+  .card-image-container:hover {
+    filter: none;
+    transform: scale(1, 1) rotate(0deg) !important;
+    transition: all 0.35s;
+  }
+  .card-image-container:hover .polaroid {
+    border: 1px solid var(--accent);
+  }
+  .card-image-container:hover .polaroid:before {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    transform: rotate(0deg);
+    height: 90%;
+    width: 90%;
+    bottom: 10%;
+    right: 5%;
+    box-shadow: 0 1em 3em rgba(0, 0, 0, 0.2);
+    transition: all 0.35s;
+  }
+</style>
+<article class="card">
+  <a href={href} class="card-title">{title}</a>
+  {img && description && <p class="card-desc">{description}</p>}
+  <div class="card-content columns-2">
+    <div class="border-accent">
+      {
+        tags && tags.length > 0 && (
+          <div class="mb-3 flex flex-col flex-wrap gap-2">
+            {tags.map((tag) => (
+              <Tag name={tag} size="sm" />
+            ))}
+          </div>
+        )
+      }
+    </div>
+
+    <div class="">
+      {
+        !img && (
+          <div>
+            <img
+              src={img}
+              alt={img_alt}
+              width="360"
+              class="card-image"
+              style={imgStyle[shortFile]}
+            />
+          </div>
+        )
+      }
+      {
+        img && (
+          <div class="card-image-container">
+            <a href={href}>
+              <div class="polaroid">
+                <span class="vignette">
+                  <img
+                    src={img}
+                    alt={img_alt}
+                    width="360"
+                    class="card-image"
+                    style={imgStyle[shortFile]}
+                  />
+                </span>
+                <span class="card-text">{imgNote[shortFile]}</span>
+              </div>
+            </a>
+          </div>
+        )
+      }
+    </div>
+  </div>
+
+  {
+    externalUrl && (
+      <div class="shrink-0">
+        <a
+          href={externalUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="card-link">
+          <span class="flex items-center gap-1">
+            <span>View live site</span>
+            <Icon name="ExternalLink" size={24} />
+          </span>
+        </a>
+      </div>
+    )
+  }
+</article>

@@ -1,0 +1,55 @@
+---
+export interface TimelineItemData {
+  title: string
+  period: string
+  subtitle: string
+  description?: string
+  thesis?: string
+}
+
+interface Props {
+  items: TimelineItemData[]
+}
+
+const { items } = Astro.props
+---
+
+<div class="timeline flex flex-col">
+  {
+    items.map((item) => {
+      const [institution, location] = item.subtitle.split(';')
+      return (
+        <div class="timeline-item flex gap-8">
+          <div class="timeline-marker flex shrink-0 flex-col items-center">
+            <div class="dot bg-accent z-10 mt-2 h-3 w-3 rounded-full" />
+            <div class="timeline-line bg-border my-2 w-0.5 flex-1" />
+          </div>
+          <div class="timeline-content flex-1 pb-8">
+            <div class="entry-header mb-1 flex items-baseline justify-between gap-4">
+              <h3 class="title-md text-pretty transition-colors duration-200">
+                {item.title}
+              </h3>
+              <span class="body-sm font-semibold whitespace-nowrap opacity-75">
+                {item.period}
+              </span>
+            </div>
+            <div class="flex max-w-96 flex-row flex-wrap gap-x-1">
+              <div class="body font-semibold text-pretty opacity-90">
+                {institution + ';'}
+              </div>
+              <div class="body italic opacity-90">{location}</div>
+            </div>
+            {item.description && (
+              <div class="body mt-2">{item.description}</div>
+            )}
+            {item.thesis && (
+              <div class="body mt-2 italic opacity-80">
+                Thesis: {item.thesis}
+              </div>
+            )}
+          </div>
+        </div>
+      )
+    })
+  }
+</div>

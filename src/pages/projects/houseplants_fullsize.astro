@@ -1,0 +1,69 @@
+---
+import { getEntry, render } from 'astro:content'
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import BackLink from '../../components/ui/BackLink.astro'
+import Tag from '../../components/ui/Tag.astro'
+import Icon from '../../components/ui/Icon.astro'
+import { getDetailItem } from '../../utils/adapters'
+import { SITE } from '../../config'
+import { Image } from 'astro:assets'
+import houseplants_fullsize from '../../assets/572_houseplants-fullsize.png'
+
+const ogImage = SITE.ogImage
+const meta = [{ label: 'Date', value: 'March 2023', icon: 'Calendar' }]
+const detailTags = [
+  'Cartography',
+  'Infographic',
+  'UW-Mad Geog370',
+  'ArcGIS-Pro',
+  'Illustrator',
+]
+---
+
+<BaseLayout
+  title="Houseplants & Fertility Rate Infographic (Fullsize)"
+  description="A graphical exploration of how related numbers of houseplants is to fertility rate in the USA."
+  ogImage={ogImage}
+  ogType="article">
+  <div class="mb-4 flex items-center justify-between">
+    <!-- <BackLink href={detail.backHref} label={collection} /> -->
+  </div>
+
+  <article>
+    <h1 class="page-title mb-4">
+      Houseplants & Fertility Rate Infographic (Fullsize)
+    </h1>
+
+    {
+      meta.length > 0 && (
+        <div class="card-meta mb-4">
+          {meta.map((m: any) => (
+            <span class="flex items-center gap-1">
+              <Icon name={m.icon} size={14} />
+              <span>{m.value}</span>
+            </span>
+          ))}
+        </div>
+      )
+    }
+
+    {
+      detailTags && detailTags.length > 0 && (
+        <div class="mb-4 flex flex-wrap gap-2">
+          {detailTags.map((tag: string) => (
+            <Tag name={tag} size="sm" />
+          ))}
+        </div>
+      )
+    }
+
+    <div class="prose"></div>
+    <Image
+      src={houseplants_fullsize}
+      alt="A graphical exploration of how related numbers of houseplants is to fertility rate in the USA."
+    />
+
+    <slot name="share" />
+    <slot name="footer" />
+  </article>
+</BaseLayout>

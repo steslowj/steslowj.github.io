@@ -1,75 +1,111 @@
 ---
-import '../styles/styles.css';
+import { getEntry, render } from 'astro:content'
+import BaseLayout from '../layouts/BaseLayout.astro'
+import { PAGES } from '../config'
+import { Image } from 'astro:assets'
+import GlobeD3topo from '../components/custom/GlobeD3topo.astro'
+import CircleText from '../components/custom/CircleText.astro'
+import bike from '../assets/png/bike.png'
+import dragon from '../assets/png/dragon.png'
+import latte from '../assets/png/latte.png'
+import computer from '../assets/png/computer.png'
 
-// Layout import — provides basic page elements: <head>, <nav>, <footer> etc.
-import BaseLayout from '../layouts/BaseLayout.astro';
-
-import Icon from '../components/Icon.astro';
-import About from '../components/About.astro';
-import { HelloAstro } from "hello-astro";
-
+// Load bio content
+const bioEntry = await getEntry('bio', 'bio')
+const { Content: BioContent } = bioEntry
+  ? await render(bioEntry)
+  : { Content: null }
 ---
 
-<BaseLayout>
-
-  <section class="hero" id="hero">
-
-    <h2 class="sr-only">Hi there !</h2>
-    <h3><HelloAstro /> <Icon icon='hand-waving' /></h3>
-    <h1>I'm <span class="accent">Jessica Steslow</span></h1>
-    <p>I'm a water-focused engineer with a love of digital cartography <Icon icon="arrow-right" /> GIS (Geographic Information Systems). This is my personal website and portfolio. Please take a look around! </p>
-    <div class="globe-container">
-      <div class="left-of-globe">
-        <p class="hero-icon-row">Find me on:  
-          <span class="hero-icon">
-            <a href="https://www.linkedin.com/in/jessicasteslow/" target="_blank">
-              <Icon icon="linkedin-logo" /></a></span>
-          <span class="hero-icon">
-            <a href="https://github.com/steslowj" target="_blank">
-              <Icon icon="github-logo" /></a></span>
-          <span class="hero-icon">
-            <a href="mailto:steslowj@gmail.com" target="_blank">
-              <Icon icon="envelope" /></a></span>
-        </p>
-
-        <p>I enjoy the combination of data vis, cartography, and coding.</p>
-      </div>
-      <iframe width="400" height="450" frameborder="3"
-          src="https://observablehq.com/embed/fd7a5dc192766bc0@250?cells=chart"></iframe>
+<BaseLayout title={PAGES.home.title}>
+  {
+    (PAGES.home.title || PAGES.home.subtitle) && (
+      <header class="page-header">
+        {PAGES.home.title && <h1 class="page-title">{PAGES.home.title}</h1>}
+        {PAGES.home.subtitle && (
+          <p class="page-subtitle">{PAGES.home.subtitle}</p>
+        )}
+      </header>
+    )
+  }
+  <div class="container-narrow">
+    <div class="prose">
+      {BioContent ? <BioContent /> : <p>Loading bio...</p>}
     </div>
-  
-    
-    <!-- incorporating d3 javascript within astro is a work in progress
-      
-      <div id="globe" style="border: 2px solid red;">
-        <canvas width="600" height="400"></canvas>
+    <div style="display: flex; flex-direction: column; align-items: center;">
+      <div class="box" id="a-globe-made-with-love">
+        <div style="padding-bottom: 1em;">
+          <GlobeD3topo />
+        </div>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
       </div>
-      
-      <script src='https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js' integrity='sha512-M7nHCiNUOwFt6Us3r8alutZLm9qMt4s9951uo8jqO4UwJ1hziseL6O3ndFyigx6+LREfZqnhHxYjKRJ8ZQ69DQ==' crossorigin='anonymous'></script>
-      
-      <script src='https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.2/topojson.min.js' integrity='sha512-4UKI/XKm3xrvJ6pZS5oTRvIQGIzZFoXR71rRBb1y2N+PbwAsKa5tPl2J6WvbEvwN3TxQCm8hMzsl/pO+82iRlg==' crossorigin='anonymous'></script>
-      
-      <script src="https://cdn.jsdelivr.net/npm/versor@0.2"></script>
+      <span class="body-sm inline-block"
+        >A globe made with love, <a
+          href="https://observablehq.com/@d3/versor-dragging"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="link">D3.JS</a
+        >, and a <a
+          href="https://www.jasondavies.com/maps/rotate/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="link">lot of math</a
+        >
+      </span>
+    </div>
+    <div class="prose">
+      <h2>My Life</h2>
+      <p>
+        I grew up in the suburbs outside of Chicago, Illinois, USA where I grew
+        to love both mathematics and the local parks around me. I got my first
+        degree at the University of Illinois at Urbana-Champaign in Civil and
+        Environmental Engineering. Through my work as a civil engineer, I found
+        I was drawn towards any project that let me explore GIS software... so I
+        followed that interest with a masters degree in GIS, from the University
+        of Wisconsin at Madison. Since then, I've greatly enjoyed learning web
+        development, particularly for interactive mapping applications.
+      </p>
+      <h2>About Me</h2>
+      <p>
+        Outside of work I enjoy cycling, hiking, camping, (indoor) rock
+        climbing, and when it's too hot to go outside I love cross stitch +
+        fantasy podcasts, video games, and reading up on CSS and webdev.
+      </p>
 
-      <script src="../js/globe.js"></script> -->
-    </section>
-  
-  <About />
+      <div class="about-png-section mt-3">
+        <div class="about-png">
+          <Image src={bike} alt="a bicycle icon" />
+          <CircleText
+            text="cycling and the outdoors"
+            offset="1"
+            inside={true}
+          />
+        </div>
+        <div class="about-png">
+          <Image src={dragon} alt="a styled dragon icon" />
+          <CircleText text="rpgs and games" offset="25" inside={false} />
+        </div>
+        <div class="about-png">
+          <Image src={latte} alt="a styled coffee icon with latte art" />
+          <CircleText text="good food and drink" offset="15" inside={false} />
+        </div>
+        <div class="about-png">
+          <Image src={computer} alt="an illustrated computer from the 90s" />
+          <CircleText text="webdev and CSS" offset="20" inside={true} />
+        </div>
+      </div>
 
+      <div class="body divider-solid my-10"></div>
+      <em class="body"
+        >"You cannot get through a single day without having an impact on the
+        world around you. What you do makes a difference, and you have to decide
+        what kind of difference you want to make." - Jane Goodall</em
+      >
+    </div>
+  </div>
 </BaseLayout>
-
-<style>
-  .hero .globe-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-  }
-  .hero .left-of-globe {
-    min-width: 36ch;
-    max-width: 50ch;
-  }
-  .hero iframe {
-    flex-grow: 0;
-  }
-
-</style>
