@@ -39,48 +39,6 @@ if (!images[img])
   )
 
 const shortFile = img.slice(20, -4)
-const imgNote = {
-  '778_homepage': 'working with a nonprofit!',
-  '777_desert-museum': 'interactive map viewer',
-  '777_cancer-nitrate': 'data-vis with python',
-  '576_cycle-repair': 'learning Google Cloud',
-  '576_dragon': 'deep dive into ArcGIS SDK for JS',
-  '576_venice': 'learning ArcGIS SDK for JS',
-  '575_mississippi': 'combining hydrology and GIS',
-  '575_az-d3': 'learning D3 JS',
-  '575_airquality_leaflet': 'learning Leaflet JS',
-  '572_ghibli': 'cartographic styling and mapbox',
-  'az-sketchy': 'cartographic styling and ArcGIS Pro',
-  bridgeport: 'cartographic styling and ArcGIS Pro',
-  '572_houseplant_bivariate': 'research, data analysis, and charts',
-  '572_cycling_map': 'practicing cartography',
-  '370_crochet': 'combing crochet and GIS',
-  '370_sleep': 'choropleth mappping',
-  '370_africa': 'labels, labels, labels',
-  '370_arizona': 'my first cartography project!',
-}
-const imgStyle = {
-  '778_homepage': 'object-position: 0 0',
-  '777_desert-museum': 'object-position: 0 0',
-  '777_cancer-nitrate': 'background-color: #FFF',
-  '576_cycle-repair': 'object-position: 0 0',
-  '576_dragon': 'object-position: 100% 100%',
-  '576_venice': 'object-position: 40% 100%',
-  '575_mississippi': 'object-position: 100% 100%',
-  '575_az-d3': 'object-fit: contain; background-color: rgb(22, 37, 54)',
-  '575_airquality_leaflet': 'object-position: 0 0',
-  '572_ghibli': 'object-position: 20% 0',
-  'az-sketchy': 'object-fit: contain; background-color: rgb(243, 238, 217)',
-  bridgeport: '',
-  '572_houseplant_bivariate':
-    'object-fit: contain; background-color: rgb(253, 253, 249)',
-  '572_cycling_map': 'object-position: 85% 100%',
-  '370_crochet': 'object-position: 50% 40%',
-  '370_sleep': 'object-fit: contain; background-color: rgb(236, 241, 250)',
-  '370_africa': '',
-  '370_arizona':
-    'object-fit: contain; background-color: #FFF; background-image: linear-gradient(to bottom, rgb(136, 207, 199), #FFF 18% 83%, rgb(244, 206, 141) 97.5%, rgb(100, 52, 101) 97.5%);',
-}
 ---
 
 <!-- https://uiverse.io/Smit-Prajapati/great-bat-98 cool card-->
@@ -91,10 +49,11 @@ const imgStyle = {
     class="card-content border-border flex flex-col flex-wrap items-center gap-2 border-t p-2 pb-4 md:flex-row md:items-start">
     <div class="border-accent flex-none">
       <a href={href} class="card-img-link rounded-sm">
-        <img
-          src={img}
+        <Image
+          src={images[img]()}
           alt={img_alt}
-          width="260"
+          width="250"
+          height="auto"
           class="card-img rounded-sm border p-1"
         />
       </a>
