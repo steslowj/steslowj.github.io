@@ -278,6 +278,13 @@ a:hover,
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
+.card-desc-projects {
+  font-size: 0.9rem;
+  color: var(--foreground);
+  opacity: 0.8;
+  line-height: 1.5;
+  display: -webkit-box;
+}
 
 .card-link {
   display: inline-block;
